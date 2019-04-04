@@ -5,7 +5,7 @@
              x:Class="TwoWeekControl.MainPage">
 
     <StackLayout>
-        <Frame Margin="50, 50, 50, 50" OutlineColor="Black">
+        <Frame Margin="0, 50, 0, 0" HorizontalOptions="Center" VerticalOptions="Start" OutlineColor="Black">
             <local:WeekControl></local:WeekControl>
         </Frame>
     </StackLayout>
