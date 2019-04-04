@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TwoWeekControl.WeekControl">
+  <ContentView.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="20"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="20"/>
+                <ColumnDefinition Width="20"/>
+                <ColumnDefinition Width="20"/>
+                <ColumnDefinition Width="20"/>
+                <ColumnDefinition Width="20"/>
+                <ColumnDefinition Width="20"/>
+                <ColumnDefinition Width="20"/>
+            </Grid.ColumnDefinitions>
+
+
+            <Label x:Name="YearLabel" Text="2019" Grid.Row="0" Grid.ColumnSpan="4" Grid.Column="0"/>
+            <Label x:Name="MonthLabel" Text="April" Grid.Row="1" Grid.ColumnSpan="4" Grid.Column="0"/>
+
+            <Button x:Name="AddNewEvent" Text="+" 
+                    Grid.Row="0" 
+                    Grid.Column="5" 
+                    Grid.ColumnSpan="2" 
+                    Grid.RowSpan="2"
+                    BackgroundColor="Transparent"
+                    BorderWidth="0" />
+
+            <Label x:Name="Date0" Text="31" Grid.Row="2" Grid.Column="0"/>
+            <Label x:Name="Date1" Text="1" Grid.Row="2" Grid.Column="1"/>
+            <Label x:Name="Date2" Text="2" Grid.Row="2" Grid.Column="2"/>
+            <Label x:Name="Date3" Text="3" Grid.Row="2" Grid.Column="3"/>
+            <Label x:Name="Date4" Text="4" Grid.Row="2" Grid.Column="4"/>
+            <Label x:Name="Date5" Text="5" Grid.Row="2" Grid.Column="5"/>
+            <Label x:Name="Date6" Text="6" Grid.Row="2" Grid.Column="6"/>
+
+            <Label x:Name="Date7" Text="7" Grid.Row="3" Grid.Column="0"/>
+            <Label x:Name="Date8" Text="8" Grid.Row="3" Grid.Column="1"/>
+            <Label x:Name="Date9" Text="9" Grid.Row="3" Grid.Column="2"/>
+            <Label x:Name="Date10" Text="10" Grid.Row="3" Grid.Column="3"/>
+            <Label x:Name="Date11" Text="11" Grid.Row="3" Grid.Column="4"/>
+            <Label x:Name="Date12" Text="12" Grid.Row="3" Grid.Column="5"/>
+            <Label x:Name="Date13" Text="13" Grid.Row="3" Grid.Column="6"/>
+
+
+        </Grid>
+    </ContentView.Content>
+</ContentView>

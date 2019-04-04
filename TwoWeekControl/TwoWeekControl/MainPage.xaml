@@ -5,10 +5,9 @@
              x:Class="TwoWeekControl.MainPage">
 
     <StackLayout>
-        <!-- Place new controls here -->
-    	<Label Text="Welcome to Xamarin.Forms!" 
-           HorizontalOptions="Center"
-           VerticalOptions="CenterAndExpand" />
+        <Frame Margin="50, 50, 50, 50" OutlineColor="Black">
+            <local:WeekControl></local:WeekControl>
+        </Frame>
     </StackLayout>
 
 </ContentPage>
