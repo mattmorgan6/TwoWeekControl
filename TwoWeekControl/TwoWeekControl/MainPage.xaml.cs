@@ -12,6 +12,8 @@ namespace TwoWeekControl
 		public MainPage()
 		{
 			InitializeComponent();
+
+            
 		}
 	}
 }

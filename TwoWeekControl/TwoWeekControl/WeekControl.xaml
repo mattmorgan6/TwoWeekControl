@@ -3,6 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TwoWeekControl.WeekControl">
   <ContentView.Content>
+     
+      
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="20"/>
@@ -20,10 +22,11 @@
                 <ColumnDefinition Width="20"/>
             </Grid.ColumnDefinitions>
 
-
+            <!-- Year and Month Labels -->
             <Label x:Name="YearLabel" Text="2019" Grid.Row="0" Grid.ColumnSpan="4" Grid.Column="0"/>
             <Label x:Name="MonthLabel" Text="April" Grid.Row="1" Grid.ColumnSpan="4" Grid.Column="0"/>
 
+            <!-- Plus Button -->
             <Button x:Name="AddNewEvent" Text="+" 
                     Grid.Row="0" 
                     Grid.Column="5" 
@@ -32,23 +35,51 @@
                     BackgroundColor="Transparent"
                     BorderWidth="0" />
 
+            <!-- Top row of dates -->
             <Label x:Name="Date0" Text="31" Grid.Row="2" Grid.Column="0" HorizontalOptions="Center"/>
+            <Button x:Name="Date0Button" Grid.Row="2" Grid.Column="0" Opacity="0.0" Clicked="Date0Button_Clicked"/>
+
             <Label x:Name="Date1" Text="1" Grid.Row="2" Grid.Column="1" HorizontalOptions="Center"/>
+            <Button x:Name="Date1Button" Grid.Row="2" Grid.Column="1" Opacity="0.0" Clicked="Date0Button_Clicked"/>
+
             <Label x:Name="Date2" Text="2" Grid.Row="2" Grid.Column="2" HorizontalOptions="Center"/>
+            <Button x:Name="Date2Button" Grid.Row="2" Grid.Column="2" Opacity="0.0" Clicked="Date0Button_Clicked"/>
+
             <Label x:Name="Date3" Text="3" Grid.Row="2" Grid.Column="3" HorizontalOptions="Center"/>
+            <Button x:Name="Date3Button" Grid.Row="2" Grid.Column="3" Opacity="0.0" Clicked="Date0Button_Clicked"/>
+
             <Label x:Name="Date4" Text="4" Grid.Row="2" Grid.Column="4" HorizontalOptions="Center"/>
+            <Button x:Name="Date4Button" Grid.Row="2" Grid.Column="4" Opacity="0.0" Clicked="Date0Button_Clicked"/>
+
             <Label x:Name="Date5" Text="5" Grid.Row="2" Grid.Column="5" HorizontalOptions="Center"/>
-            <Label x:Name="Date6" Text="6" Grid.Row="2" Grid.Column="6" HorizontalOptions="Center"/>
+            <Button x:Name="Date5Button" Grid.Row="2" Grid.Column="5" Opacity="0.0" Clicked="Date0Button_Clicked"/>
 
+            <Label x:Name="Date6" Text="{Binding SixthDate}" Grid.Row="2" Grid.Column="6" HorizontalOptions="Center"/>
+            <Button x:Name="Date6Button" Grid.Row="2" Grid.Column="6" Opacity="0.0" Clicked="Date0Button_Clicked"/>
+
+            
+            <!-- Bottom Row -->
             <Label x:Name="Date7" Text="7" Grid.Row="3" Grid.Column="0" HorizontalOptions="Center"/>
+            <Button x:Name="Date7Button" Grid.Row="3" Grid.Column="0" Opacity="0.0" Clicked="Date0Button_Clicked"/>
+
             <Label x:Name="Date8" Text="8" Grid.Row="3" Grid.Column="1" HorizontalOptions="Center"/>
+            <Button x:Name="Date8Button" Grid.Row="3" Grid.Column="1" Opacity="0.0" Clicked="Date0Button_Clicked"/>
+
             <Label x:Name="Date9" Text="9" Grid.Row="3" Grid.Column="2" HorizontalOptions="Center"/>
+            <Button x:Name="Date9Button" Grid.Row="3" Grid.Column="2" Opacity="0.0" Clicked="Date0Button_Clicked"/>
+
             <Label x:Name="Date10" Text="10" Grid.Row="3" Grid.Column="3" HorizontalOptions="Center"/>
+            <Button x:Name="Date10Button" Grid.Row="3" Grid.Column="3" Opacity="0.0" Clicked="Date0Button_Clicked"/>
+
             <Label x:Name="Date11" Text="11" Grid.Row="3" Grid.Column="4" HorizontalOptions="Center"/>
+            <Button x:Name="Date11Button" Grid.Row="3" Grid.Column="4" Opacity="0.0" Clicked="Date0Button_Clicked"/>
+
             <Label x:Name="Date12" Text="12" Grid.Row="3" Grid.Column="5" HorizontalOptions="Center"/>
+            <Button x:Name="Date12Button" Grid.Row="3" Grid.Column="5" Opacity="0.0" Clicked="Date0Button_Clicked"/>
+
             <Label x:Name="Date13" Text="13" Grid.Row="3" Grid.Column="6" HorizontalOptions="Center"/>
-
-
+            <Button x:Name="Date13Button" Grid.Row="3" Grid.Column="6" Opacity="0.0" Clicked="Date0Button_Clicked"/>
         </Grid>
+      
     </ContentView.Content>
 </ContentView>
