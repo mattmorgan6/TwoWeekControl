@@ -12,8 +12,11 @@ namespace TwoWeekControl
 		public MainPage()
 		{
 			InitializeComponent();
+        }
 
+        public void DoStuff()
+        {
             
-		}
-	}
+        }
+    }
 }
