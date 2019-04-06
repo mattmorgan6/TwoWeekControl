@@ -59,12 +59,6 @@ namespace TwoWeekControl
             }
         }
 
-
-
-
-
-
-
         private double date0Opacity;
         public double Date0Opacity
         {
@@ -149,8 +143,89 @@ namespace TwoWeekControl
             }
         }
 
+        private double date7Opacity;
+        public double Date7Opacity
+        {
+            get { return date7Opacity; }
+            set
+            {
+                if (value != date7Opacity)
+                    date7Opacity = value;
+                OnNotifyPropertyChanged(nameof(Date7Opacity));
+            }
+        }
 
+        private double date8Opacity;
+        public double Date8Opacity
+        {
+            get { return date8Opacity; }
+            set
+            {
+                if (value != date8Opacity)
+                    date8Opacity = value;
+                OnNotifyPropertyChanged(nameof(Date8Opacity));
+            }
+        }
 
+        private double date9Opacity;
+        public double Date9Opacity
+        {
+            get { return date9Opacity; }
+            set
+            {
+                if (value != date9Opacity)
+                    date9Opacity = value;
+                OnNotifyPropertyChanged(nameof(Date9Opacity));
+            }
+        }
+
+        private double date10Opacity;
+        public double Date10Opacity
+        {
+            get { return date10Opacity; }
+            set
+            {
+                if (value != date10Opacity)
+                    date10Opacity = value;
+                OnNotifyPropertyChanged(nameof(Date10Opacity));
+            }
+        }
+
+        private double date11Opacity;
+        public double Date11Opacity
+        {
+            get { return date11Opacity; }
+            set
+            {
+                if (value != date11Opacity)
+                    date11Opacity = value;
+                OnNotifyPropertyChanged(nameof(Date11Opacity));
+            }
+        }
+
+        private double date12Opacity;
+        public double Date12Opacity
+        {
+            get { return date12Opacity; }
+            set
+            {
+                if (value != date12Opacity)
+                    date12Opacity = value;
+                OnNotifyPropertyChanged(nameof(Date12Opacity));
+            }
+        }
+
+        private double date13Opacity;
+        public double Date13Opacity
+        {
+            get { return date13Opacity; }
+            set
+            {
+                if (value != date13Opacity)
+                    date13Opacity = value;
+                OnNotifyPropertyChanged(nameof(Date13Opacity));
+            }
+        }
 
 
 

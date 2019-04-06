@@ -13,7 +13,7 @@ namespace TwoWeekControl
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class WeekControl : ContentView
 	{
-        public int SelectedDate = 0;
+        public int SelectedDay;
 
         public List<Action> UnSelections = new List<Action>();
         public List<Action> Selections = new List<Action>();
@@ -21,9 +21,11 @@ namespace TwoWeekControl
 
         public DateTime dateSelected;       
         //todo: update this variable to the date that is selected.
-        //  steps:  1) parse the wvm strings for day, month, year
-        //          2) set the DateTime to it.
-        //          3) Make a getter
+        //  steps:  1) correct the month if it i selects 31 or lower, or higher than the last month.
+        //          2) correct the year if the month clicked is december or january
+        //          2) parse the wvm strings for day, month, year     <-- done
+        //          3) set the DateTime to it.
+        //          4) Make a getter
 
 
         public WeekViewModel wvm = new WeekViewModel();
@@ -41,6 +43,21 @@ namespace TwoWeekControl
             SelectButton(5);
 		}
 
+        public void UpdateTime()
+        {
+            string year = wvm.Year;
+            string month = wvm.Month;
+
+            string day = SelectedDay.ToString();
+
+            
+
+            string sum = year + "-" + month + "-" + day;
+
+            Debug.WriteLine("Parse: " + DateTime.TryParseExact(sum, "yyyy-MMMM-d", null, System.Globalization.DateTimeStyles.None, out dateSelected));
+            Debug.WriteLine("Date selected: " + dateSelected.ToShortDateString());
+        }
+
         private void SetButtons()
         {
             UnSelections.Add(() => wvm.Date0Opacity = 0);
@@ -50,6 +67,13 @@ namespace TwoWeekControl
             UnSelections.Add(() => wvm.Date4Opacity = 0);
             UnSelections.Add(() => wvm.Date5Opacity = 0);
             UnSelections.Add(() => wvm.Date6Opacity = 0);
+            UnSelections.Add(() => wvm.Date7Opacity = 0);
+            UnSelections.Add(() => wvm.Date8Opacity = 0);
+            UnSelections.Add(() => wvm.Date9Opacity = 0);
+            UnSelections.Add(() => wvm.Date10Opacity = 0);
+            UnSelections.Add(() => wvm.Date11Opacity = 0);
+            UnSelections.Add(() => wvm.Date12Opacity = 0);
+            UnSelections.Add(() => wvm.Date13Opacity = 0);
 
             Selections.Add(() => wvm.Date0Opacity = 1);
             Selections.Add(() => wvm.Date1Opacity = 1);
@@ -58,6 +82,13 @@ namespace TwoWeekControl
             Selections.Add(() => wvm.Date4Opacity = 1);
             Selections.Add(() => wvm.Date5Opacity = 1);
             Selections.Add(() => wvm.Date6Opacity = 1);
+            Selections.Add(() => wvm.Date7Opacity = 1);
+            Selections.Add(() => wvm.Date8Opacity = 1);
+            Selections.Add(() => wvm.Date9Opacity = 1);
+            Selections.Add(() => wvm.Date10Opacity = 1);
+            Selections.Add(() => wvm.Date11Opacity = 1);
+            Selections.Add(() => wvm.Date12Opacity = 1);
+            Selections.Add(() => wvm.Date13Opacity = 1);
         }
 
         public void Add()
@@ -84,9 +115,11 @@ namespace TwoWeekControl
                     UnSelections[i].Invoke();   //hide
                 }
             }
+            
+            UpdateTime();
         }
 
-
+        
 
 
 
@@ -139,6 +172,41 @@ namespace TwoWeekControl
         private void Date6Button_Clicked(object sender, EventArgs e)
         {
             SelectButton(6);
+        }
+
+        private void Date7Button_Clicked(object sender, EventArgs e)
+        {
+            SelectButton(7);
+        }
+
+        private void Date8Button_Clicked(object sender, EventArgs e)
+        {
+            SelectButton(8);
+        }
+
+        private void Date9Button_Clicked(object sender, EventArgs e)
+        {
+            SelectButton(9);
+        }
+
+        private void Date10Button_Clicked(object sender, EventArgs e)
+        {
+            SelectButton(10);
+        }
+
+        private void Date11Button_Clicked(object sender, EventArgs e)
+        {
+            SelectButton(11);
+        }
+
+        private void Date12Button_Clicked(object sender, EventArgs e)
+        {
+            SelectButton(12);
+        }
+
+        private void Date13Button_Clicked(object sender, EventArgs e)
+        {
+            SelectButton(13);
         }
     }
 }
