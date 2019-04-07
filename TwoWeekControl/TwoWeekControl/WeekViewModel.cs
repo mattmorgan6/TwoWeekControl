@@ -7,14 +7,27 @@ namespace TwoWeekControl
 {
     public class WeekViewModel : INotifyPropertyChanged
     {
-
-
+        List<DayModel> Lily = new List<DayModel>();
 
         public WeekViewModel()
         {
-            SixthDate = "6";
             Year = "2019";
             Month = "April";
+            Date0Num = 31;
+            Date1Num = 1;
+            Date2Num = 2;
+            Date3Num = 3;
+            Date4Num = 4;
+            Date5Num = 5;
+            Date6Num = 6;
+            Date7Num = 7;
+            Date8Num = 8;
+            Date9Num = 9;
+            Date10Num = 10;
+            Date11Num = 11;
+            Date12Num = 12;
+            Date13Num = 13;
+            /*Lily.Add(new DayModel("wow")); */
         }
 
         public string year;
@@ -26,7 +39,6 @@ namespace TwoWeekControl
                 if(value != year)
                     year = value;
                     OnNotifyPropertyChanged(nameof(Year));
-
             }
         }
 
@@ -42,22 +54,211 @@ namespace TwoWeekControl
             }
         }
 
+        private int date0Num;
+        public int Date0Num
+        {
+            get { return date0Num; }
+            set
+            {
+                if(value != date0Num)
+                {
+                    date0Num = value;
+                    OnNotifyPropertyChanged(nameof(Date0Num));
+                }
+            }
+        }
+
+        private int date1Num;
+        public int Date1Num
+        {
+            get { return date1Num; }
+            set
+            {
+                if (value != date1Num)
+                {
+                    date1Num = value;
+                    OnNotifyPropertyChanged(nameof(Date1Num));
+                }
+            }
+        }
+
+        private int date2Num;
+        public int Date2Num
+        {
+            get { return date2Num; }
+            set
+            {
+                if (value != date2Num)
+                {
+                    date2Num = value;
+                    OnNotifyPropertyChanged(nameof(Date2Num));
+                }
+            }
+        }
+
+        private int date3Num;
+        public int Date3Num
+        {
+            get { return date3Num; }
+            set
+            {
+                if (value != date3Num)
+                {
+                    date3Num = value;
+                    OnNotifyPropertyChanged(nameof(Date3Num));
+                }
+            }
+        }
+
+        private int date4Num;
+        public int Date4Num
+        {
+            get { return date4Num; }
+            set
+            {
+                if (value != date4Num)
+                {
+                    date4Num = value;
+                    OnNotifyPropertyChanged(nameof(Date4Num));
+                }
+            }
+        }
+
+        private int date5Num;
+        public int Date5Num
+        {
+            get { return date5Num; }
+            set
+            {
+                if (value != date5Num)
+                {
+                    date5Num = value;
+                    OnNotifyPropertyChanged(nameof(Date5Num));
+                }
+            }
+        }
+
+
+        private int date6Num;
+        public int Date6Num
+        {
+            get { return date6Num; }
+            set
+            {
+                if (value != date6Num)
+                {
+                    date6Num = value;
+                    OnNotifyPropertyChanged(nameof(Date6Num));
+                }
+            }
+        }
+
+
+        private int date7num;
+        public int Date7Num
+        {
+            get { return date7num; }
+            set
+            {
+                if (value != date7num)
+                {
+                    date7num = value;
+                    OnNotifyPropertyChanged(nameof(Date7Num));
+                }
+            }
+        }
+
+        private int date8Num;
+        public int Date8Num
+        {
+            get { return date8Num; }
+            set
+            {
+                if (value != date8Num)
+                {
+                    date8Num = value;
+                    OnNotifyPropertyChanged(nameof(Date8Num));
+                }
+            }
+        }
+
+        private int date9Num;
+        public int Date9Num
+        {
+            get { return date9Num; }
+            set
+            {
+                if (value != date9Num)
+                {
+                    date9Num = value;
+                    OnNotifyPropertyChanged(nameof(Date9Num));
+                }
+            }
+        }
+
+        private int date10Num;
+        public int Date10Num
+        {
+            get { return date10Num; }
+            set
+            {
+                if (value != date10Num)
+                {
+                    date10Num = value;
+                    OnNotifyPropertyChanged(nameof(Date10Num));
+                }
+            }
+        }
+
+        private int date11Num;
+        public int Date11Num
+        {
+            get { return date11Num; }
+            set
+            {
+                if (value != date11Num)
+                {
+                    date11Num = value;
+                    OnNotifyPropertyChanged(nameof(Date11Num));
+                }
+            }
+        }
+
+        private int date12Num;
+        public int Date12Num
+        {
+            get { return date12Num; }
+            set
+            {
+                if (value != date12Num)
+                {
+                    date12Num = value;
+                    OnNotifyPropertyChanged(nameof(Date12Num));
+                }
+            }
+        }
+
+        private int date13Num;
+        public int Date13Num
+        {
+            get { return date13Num; }
+            set
+            {
+                if (value != date13Num)
+                {
+                    date13Num = value;
+                    OnNotifyPropertyChanged(nameof(Date13Num));
+                }
+            }
+        }
+
+
 
 
 
 
         public string sixthDate;
-        public string SixthDate
-        {
-            get { return sixthDate; }
-            set
-            {
-                if (sixthDate != value)
-                    sixthDate = value;
-                    //OnNotifyPropertyChanged(nameof(value));
-                    OnNotifyPropertyChanged(nameof(SixthDate));
-            }
-        }
+
 
         private double date0Opacity;
         public double Date0Opacity

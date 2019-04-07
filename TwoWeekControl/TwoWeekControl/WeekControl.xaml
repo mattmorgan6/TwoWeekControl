@@ -23,8 +23,14 @@
             </Grid.ColumnDefinitions>
 
             <!-- Year and Month Labels -->
-            <Label x:Name="YearLabel" Text="{Binding Year}" Grid.Row="0" Grid.ColumnSpan="4" Grid.Column="0"/>
+            <Label x:Name="YearLabel" Text="{Binding VOne}" Grid.Row="0" Grid.ColumnSpan="4" Grid.Column="0"/>
             <Label x:Name="MonthLabel" Text="{Binding Month}" Grid.Row="1" Grid.ColumnSpan="4" Grid.Column="0"/>
+
+            <!--<ContentView x:Name="Tester" Grid.Row="1" Grid.ColumnSpan="4" Grid.Column="0">
+                <Label Text="{Binding Monthy}"></Label>
+            </ContentView>-->
+
+
 
             <!-- Plus Button -->
             <Button x:Name="AddNewEvent" Text="+" 
@@ -36,50 +42,53 @@
                     BorderWidth="0"
                     BorderColor="Transparent"/>
 
+
+            
+
             <!-- Top row of dates -->
-            <Label x:Name="Date0" Text="31" Grid.Row="2" Grid.Column="0" HorizontalOptions="Center"/>
+            <Label x:Name="Date0" Text="{Binding Date0Num}" Grid.Row="2" Grid.Column="0" HorizontalOptions="Center"/>
             <Button x:Name="Date0Button" Grid.Row="2" Grid.Column="0" Opacity="{Binding Date0Opacity}" Clicked="Date0Button_Clicked"
                     BackgroundColor="Transparent"
                     BorderRadius="10"
                     BorderColor="IndianRed"
                     BorderWidth="1"/>
 
-            <Label x:Name="Date1" Text="1" Grid.Row="2" Grid.Column="1" HorizontalOptions="Center"/>
+            <Label x:Name="Date1" Text="{Binding Date1Num}" Grid.Row="2" Grid.Column="1" HorizontalOptions="Center"/>
             <Button x:Name="Date1Button" Grid.Row="2" Grid.Column="1" Opacity="{Binding Date1Opacity}" Clicked="Date1Button_Clicked"
                     BackgroundColor="Transparent"
                     BorderRadius="10"
                     BorderColor="IndianRed"
                     BorderWidth="1" />
 
-            <Label x:Name="Date2" Text="2" Grid.Row="2" Grid.Column="2" HorizontalOptions="Center"/>
+            <Label x:Name="Date2" Text="{Binding Date2Num}" Grid.Row="2" Grid.Column="2" HorizontalOptions="Center"/>
             <Button x:Name="Date2Button" Grid.Row="2" Grid.Column="2" Opacity="{Binding Date2Opacity}" Clicked="Date2Button_Clicked"
                     BackgroundColor="Transparent"
                     BorderRadius="10"
                     BorderColor="IndianRed"
                     BorderWidth="1" />
 
-            <Label x:Name="Date3" Text="3" Grid.Row="2" Grid.Column="3" HorizontalOptions="Center"/>
+            <Label x:Name="Date3" Text="{Binding Date3Num}" Grid.Row="2" Grid.Column="3" HorizontalOptions="Center"/>
             <Button x:Name="Date3Button" Grid.Row="2" Grid.Column="3" Opacity="{Binding Date3Opacity}" Clicked="Date3Button_Clicked"
                     BackgroundColor="Transparent"
                     BorderRadius="10"
                     BorderColor="IndianRed"
                     BorderWidth="1"/>
 
-            <Label x:Name="Date4" Text="4" Grid.Row="2" Grid.Column="4" HorizontalOptions="Center"/>
+            <Label x:Name="Date4" Text="{Binding Date4Num}" Grid.Row="2" Grid.Column="4" HorizontalOptions="Center"/>
             <Button x:Name="Date4Button" Grid.Row="2" Grid.Column="4" Opacity="{Binding Date4Opacity}" Clicked="Date4Button_Clicked"
                     BackgroundColor="Transparent"
                     BorderRadius="10"
                     BorderColor="IndianRed"
                     BorderWidth="1"/>
 
-            <Label x:Name="Date5" Text="5" Grid.Row="2" Grid.Column="5" HorizontalOptions="Center"/>
+            <Label x:Name="Date5" Text="{Binding Date5Num}" Grid.Row="2" Grid.Column="5" HorizontalOptions="Center"/>
             <Button x:Name="Date5Button" Grid.Row="2" Grid.Column="5" Opacity="{Binding Date5Opacity}" Clicked="Date5Button_Clicked"
                     BackgroundColor="Transparent"
                     BorderRadius="10"
                     BorderColor="IndianRed"
                     BorderWidth="1"/>
 
-            <Label x:Name="Date6" Text="{Binding SixthDate}" Grid.Row="2" Grid.Column="6" HorizontalOptions="Center"/>
+            <Label x:Name="Date6" Text="{Binding Date6Num}" Grid.Row="2" Grid.Column="6" HorizontalOptions="Center"/>
             <Button x:Name="Date6Button" Grid.Row="2" Grid.Column="6" Opacity="{Binding Date6Opacity}" Clicked="Date6Button_Clicked"
                     BackgroundColor="Transparent"
                     BorderRadius="10"
@@ -88,49 +97,49 @@
 
             
             <!-- Bottom Row -->
-            <Label x:Name="Date7" Text="7" Grid.Row="3" Grid.Column="0" HorizontalOptions="Center"/>
+            <Label x:Name="Date7" Text="{Binding Date7Num}" Grid.Row="3" Grid.Column="0" HorizontalOptions="Center"/>
             <Button x:Name="Date7Button" Grid.Row="3" Grid.Column="0" Opacity="{Binding Date7Opacity}" Clicked="Date7Button_Clicked"
                     BackgroundColor="Transparent"
                     BorderRadius="10"
                     BorderColor="IndianRed"
                     BorderWidth="1"/>
 
-            <Label x:Name="Date8" Text="8" Grid.Row="3" Grid.Column="1" HorizontalOptions="Center"/>
+            <Label x:Name="Date8" Text="{Binding Date8Num}" Grid.Row="3" Grid.Column="1" HorizontalOptions="Center"/>
             <Button x:Name="Date8Button" Grid.Row="3" Grid.Column="1" Opacity="{Binding Date8Opacity}" Clicked="Date8Button_Clicked"
                     BackgroundColor="Transparent"
                     BorderRadius="10"
                     BorderColor="IndianRed"
                     BorderWidth="1"/>
 
-            <Label x:Name="Date9" Text="9" Grid.Row="3" Grid.Column="2" HorizontalOptions="Center"/>
+            <Label x:Name="Date9" Text="{Binding Date9Num}" Grid.Row="3" Grid.Column="2" HorizontalOptions="Center"/>
             <Button x:Name="Date9Button" Grid.Row="3" Grid.Column="2" Opacity="{Binding Date9Opacity}" Clicked="Date9Button_Clicked"
                     BackgroundColor="Transparent"
                     BorderRadius="10"
                     BorderColor="IndianRed"
                     BorderWidth="1"/>
 
-            <Label x:Name="Date10" Text="10" Grid.Row="3" Grid.Column="3" HorizontalOptions="Center"/>
+            <Label x:Name="Date10" Text="{Binding Date10Num}" Grid.Row="3" Grid.Column="3" HorizontalOptions="Center"/>
             <Button x:Name="Date10Button" Grid.Row="3" Grid.Column="3" Opacity="{Binding Date10Opacity}" Clicked="Date10Button_Clicked"
                     BackgroundColor="Transparent"
                     BorderRadius="10"
                     BorderColor="IndianRed"
                     BorderWidth="1"/>
 
-            <Label x:Name="Date11" Text="11" Grid.Row="3" Grid.Column="4" HorizontalOptions="Center"/>
+            <Label x:Name="Date11" Text="{Binding Date11Num}" Grid.Row="3" Grid.Column="4" HorizontalOptions="Center"/>
             <Button x:Name="Date11Button" Grid.Row="3" Grid.Column="4" Opacity="{Binding Date11Opacity}" Clicked="Date11Button_Clicked"
                     BackgroundColor="Transparent"
                     BorderRadius="10"
                     BorderColor="IndianRed"
                     BorderWidth="1"/>
 
-            <Label x:Name="Date12" Text="12" Grid.Row="3" Grid.Column="5" HorizontalOptions="Center"/>
+            <Label x:Name="Date12" Text="{Binding Date12Num}" Grid.Row="3" Grid.Column="5" HorizontalOptions="Center"/>
             <Button x:Name="Date12Button" Grid.Row="3" Grid.Column="5" Opacity="{Binding Date12Opacity}" Clicked="Date12Button_Clicked"
                     BackgroundColor="Transparent"
                     BorderRadius="10"
                     BorderColor="IndianRed"
                     BorderWidth="1"/>
 
-            <Label x:Name="Date13" Text="13" Grid.Row="3" Grid.Column="6" HorizontalOptions="Center"/>
+            <Label x:Name="Date13" Text="{Binding Date13Num}" Grid.Row="3" Grid.Column="6" HorizontalOptions="Center"/>
             <Button x:Name="Date13Button" Grid.Row="3" Grid.Column="6" Opacity="{Binding Date13Opacity}" Clicked="Date13Button_Clicked"
                     BackgroundColor="Transparent"
                     BorderRadius="10"

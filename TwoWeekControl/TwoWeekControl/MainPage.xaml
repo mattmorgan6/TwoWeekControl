@@ -8,7 +8,7 @@
         <Frame Margin="0, 50, 0, 0" HorizontalOptions="Center" VerticalOptions="Start" OutlineColor="Black">
             <local:WeekControl x:Name="hwControl"></local:WeekControl>
         </Frame>
-
+        
         <Label Text="test" x:Name="testLabel"/>
     </StackLayout>
 
