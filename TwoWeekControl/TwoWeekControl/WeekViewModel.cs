@@ -7,7 +7,6 @@ namespace TwoWeekControl
 {
     public class WeekViewModel : INotifyPropertyChanged
     {
-        List<DayModel> Lily = new List<DayModel>();
 
         public WeekViewModel()
         {

@@ -13,311 +13,212 @@ namespace TwoWeekControl
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class WeekControl : ContentView
 	{
-        public int SelectedDay;
-
-        public List<Action> UnSelections = new List<Action>();
-        public List<Action> Selections = new List<Action>();
-
-
         public DateTime dateSelected;       
-        //todo: update this variable to the date that is selected.
-        //  steps:  1) correct the month if it i selects 31 or lower, or higher than the last month.
-        //          2) correct the year if the month clicked is december or january
-        //          2) parse the wvm strings for day, month, year     <-- done
-        //          3) set the DateTime to it.
-        //          4) Make a getter
 
 
-        public WeekViewModel wvm = new WeekViewModel();
-        public DangViewModel dvm = new DangViewModel();
+        public List<DayViewModel> dataList = new List<DayViewModel>();
+
 
 		public WeekControl ()
 		{
 			InitializeComponent ();
 
-            BindingContext = wvm;
+            SetDataList();
 
-            dateSelected = DateTime.Now;
-
-            SetButtons();
-
-            SelectButton(5);
-
-            SelectedDay = 0;
-
-            YearLabel.BindingContext = dvm;
-
-            
+            SelectDay(6);
 		}
 
-        public void UpdateTime()    //sets dateSelected to the correct DateTime
+        public void SetDateSelected(int n)
         {
-            string year = wvm.Year;
-            string month = wvm.Month;
-            string day = SelectedDay.ToString();            
+            string year = dataList[n].Year.ToString();
+            string month = dataList[n].Month;
+            string day = dataList[n].DayNumber.ToString();
 
             string sum = year + "-" + month + "-" + day;
 
-            Debug.WriteLine("Sum "+sum);
+            Debug.WriteLine("Sum " + sum);
+            //If successful parse, this line prints true 
             Debug.WriteLine("Parse: " + DateTime.TryParseExact(sum, "yyyy-MMMM-d", null, System.Globalization.DateTimeStyles.None, out dateSelected));
+            //If successful parse, this line prints the selected date, if failed, the line prints 1/1/2001
             Debug.WriteLine("Date selected: " + dateSelected.ToShortDateString());
         }
 
-        private void SetButtons()
+        public DateTime GetDateSelected()
         {
-            UnSelections.Add(() => wvm.Date0Opacity = 0);
-            UnSelections.Add(() => wvm.Date1Opacity = 0);
-            UnSelections.Add(() => wvm.Date2Opacity = 0);
-            UnSelections.Add(() => wvm.Date3Opacity = 0);
-            UnSelections.Add(() => wvm.Date4Opacity = 0);
-            UnSelections.Add(() => wvm.Date5Opacity = 0);
-            UnSelections.Add(() => wvm.Date6Opacity = 0);
-            UnSelections.Add(() => wvm.Date7Opacity = 0);
-            UnSelections.Add(() => wvm.Date8Opacity = 0);
-            UnSelections.Add(() => wvm.Date9Opacity = 0);
-            UnSelections.Add(() => wvm.Date10Opacity = 0);
-            UnSelections.Add(() => wvm.Date11Opacity = 0);
-            UnSelections.Add(() => wvm.Date12Opacity = 0);
-            UnSelections.Add(() => wvm.Date13Opacity = 0);
+            return dateSelected;
+        }
 
-            Selections.Add(() => wvm.Date0Opacity = 1);
-            Selections.Add(() => wvm.Date1Opacity = 1);
-            Selections.Add(() => wvm.Date2Opacity = 1);
-            Selections.Add(() => wvm.Date3Opacity = 1);
-            Selections.Add(() => wvm.Date4Opacity = 1);
-            Selections.Add(() => wvm.Date5Opacity = 1);
-            Selections.Add(() => wvm.Date6Opacity = 1);
-            Selections.Add(() => wvm.Date7Opacity = 1);
-            Selections.Add(() => wvm.Date8Opacity = 1);
-            Selections.Add(() => wvm.Date9Opacity = 1);
-            Selections.Add(() => wvm.Date10Opacity = 1);
-            Selections.Add(() => wvm.Date11Opacity = 1);
-            Selections.Add(() => wvm.Date12Opacity = 1);
-            Selections.Add(() => wvm.Date13Opacity = 1);
+        //TODO: auto fill the calendar! 
+        //Then allow to shift dates
+        //Then make it look pretty
+
+        private void SetDataList()
+        {     //daynumber, opacity, month, year
+            dataList.Add(new DayViewModel(28, 0, "April", 2019)); 
+            Date0.BindingContext = dataList[0];
+            Date0Button.BindingContext = dataList[0];
+            YearLabel.BindingContext = dataList[0];
+            MonthLabel.BindingContext = dataList[0];
+
+            dataList.Add(new DayViewModel(29, 0, "April", 2019));
+            Date1.BindingContext = dataList[1];
+            Date1Button.BindingContext = dataList[1];
+
+            dataList.Add(new DayViewModel(30, 0, "April", 2019));
+            Date2.BindingContext = dataList[2];
+            Date2Button.BindingContext = dataList[2];
+
+            dataList.Add(new DayViewModel(1, 0, "May", 2019));
+            Date3.BindingContext = dataList[3];
+            Date3Button.BindingContext = dataList[3];
+
+            dataList.Add(new DayViewModel(2, 1, "May", 2019));
+            Date4.BindingContext = dataList[4];
+            Date4Button.BindingContext = dataList[4];
+
+            dataList.Add(new DayViewModel(3, 0, "May", 2019));
+            Date5.BindingContext = dataList[5];
+            Date5Button.BindingContext = dataList[5];
+
+            dataList.Add(new DayViewModel(4, 0, "May", 2019));
+            Date6.BindingContext = dataList[6];
+            Date6Button.BindingContext = dataList[6];
+
+            dataList.Add(new DayViewModel(5, 0, "May", 2019));
+            Date7.BindingContext = dataList[7];
+            Date7Button.BindingContext = dataList[7];
+
+            dataList.Add(new DayViewModel(6, 0, "May", 2019));
+            Date8.BindingContext = dataList[8];
+            Date8Button.BindingContext = dataList[8];
+
+            dataList.Add(new DayViewModel(7, 0, "May", 2019));
+            Date9.BindingContext = dataList[9];
+            Date9Button.BindingContext = dataList[9];
+
+            dataList.Add(new DayViewModel(8, 0, "May", 2019));
+            Date10.BindingContext = dataList[10];
+            Date10Button.BindingContext = dataList[10];
+
+            dataList.Add(new DayViewModel(9, 0, "May", 2019));
+            Date11.BindingContext = dataList[11];
+            Date11Button.BindingContext = dataList[11];
+
+            dataList.Add(new DayViewModel(10, 0, "May", 2019));
+            Date12.BindingContext = dataList[12];
+            Date12Button.BindingContext = dataList[12];
+
+            dataList.Add(new DayViewModel(11, 0, "May", 2019));
+            Date13.BindingContext = dataList[13];
+            Date13Button.BindingContext = dataList[13];
+        }
+
+        
+        
+        private void CircleDate(int n)
+        {
+            for(int i=0; i<dataList.Count; i++)
+            {
+                if(i != n)
+                {
+                    dataList[i].DayOpacity = 0;
+                }
+            }
+            dataList[n].DayOpacity = 1;
+        }
+
+        private void ChangeBinding(int n)
+        {
+            MonthLabel.BindingContext = dataList[n];
+            YearLabel.BindingContext = dataList[n];
+            //Debug.WriteLine("Changed month and year binding for box: " + n);
+        }
+
+        public void SelectDay(int n)
+        {
+            ChangeBinding(n);
+            CircleDate(n);
+            SetDateSelected(n);
         }
 
 
-        // @Param: n is the button selected (0 is top left, 13 if bottom right).
-        public void SelectButton(int n)
-        {
-            for (int i = 0; i < Selections.Count(); i++)
-            {
-                if (i == n)         //if the button is the selected one
-                {
-                    Selections[i].Invoke();   //show
-                }
-                else
-                {
-                    UnSelections[i].Invoke();   //hide
-                }
-            }
-            
-            UpdateTime();
-        }      
-        
 
 
         //Event Handlers:
-
+  
         private void Date0Button_Clicked(object sender, EventArgs e)
         {
             //var button = sender as Button;
             //var theValue = button.Id;
             //YearLabel.Text = theValue.ToString(); //todo: know which date is pressed.
 
-            SelectedDay = wvm.Date0Num;
-            if(wvm.Date0Num > wvm.Date1Num)
-            {
-                wvm.Month = DateTime.ParseExact(wvm.Month, "MMMM", null).AddMonths(-1).ToString("MMMM");
-            }
-
-            //Debug.WriteLine(DateTime.ParseExact(wvm.Month, "MMMM", null).AddMonths(-1).ToString("MMMM"));
-
-            SelectButton(0);
-            
+            SelectDay(0);            
         }
 
         private void Date1Button_Clicked(object sender, EventArgs e)
         {
-            SelectedDay = wvm.Date1Num;
-            if (wvm.Date1Num > wvm.Date2Num)
-            {
-                wvm.Month = DateTime.ParseExact(wvm.Month, "MMMM", null).AddMonths(-1).ToString("MMMM");
-            }
-            else if (wvm.Date1Num < wvm.Date0Num)
-            {
-                wvm.Month = DateTime.ParseExact(wvm.Month, "MMMM", null).AddMonths(1).ToString("MMMM");
-            }
-            SelectButton(1);
-            Debug.WriteLine("button 1 pressed!");
-            Debug.WriteLine("wvm Value: " + wvm.Date1Opacity);
+            SelectDay(1);
         }
 
         private void Date2Button_Clicked(object sender, EventArgs e)
         {
-            SelectedDay = wvm.Date2Num;
-            if (wvm.Date2Num > wvm.Date3Num)
-            {
-                wvm.Month = DateTime.ParseExact(wvm.Month, "MMMM", null).AddMonths(-1).ToString("MMMM");
-            }
-            else if (wvm.Date2Num < wvm.Date1Num)
-            {
-                wvm.Month = DateTime.ParseExact(wvm.Month, "MMMM", null).AddMonths(1).ToString("MMMM");
-            }
-            SelectButton(2);
-            wvm.Date2Opacity = 1;
+            SelectDay(2);
         }
 
         private void Date3Button_Clicked(object sender, EventArgs e)
         {
-            SelectedDay = wvm.Date3Num;
-            if (wvm.Date3Num > wvm.Date4Num)
-            {
-                wvm.Month = DateTime.ParseExact(wvm.Month, "MMMM", null).AddMonths(-1).ToString("MMMM");
-            }
-            else if (wvm.Date3Num < wvm.Date2Num)
-            {
-                wvm.Month = DateTime.ParseExact(wvm.Month, "MMMM", null).AddMonths(1).ToString("MMMM");
-            }
-            SelectButton(3);
-            Debug.WriteLine("opc: " + wvm.Date3Opacity);
+            SelectDay(3);
 
         }
 
         private void Date4Button_Clicked(object sender, EventArgs e)
         {
-            SelectedDay = wvm.Date4Num;
-            if (wvm.Date4Num > wvm.Date5Num)
-            {
-                wvm.Month = DateTime.ParseExact(wvm.Month, "MMMM", null).AddMonths(-1).ToString("MMMM");
-            }
-            else if (wvm.Date4Num < wvm.Date3Num)
-            {
-                wvm.Month = DateTime.ParseExact(wvm.Month, "MMMM", null).AddMonths(1).ToString("MMMM");
-            }
-            SelectButton(4);
+            SelectDay(4);
         }
 
         private void Date5Button_Clicked(object sender, EventArgs e)
         {
-            SelectedDay = wvm.Date5Num;
-            if (wvm.Date5Num > wvm.Date6Num)
-            {
-                wvm.Month = DateTime.ParseExact(wvm.Month, "MMMM", null).AddMonths(-1).ToString("MMMM");
-            }
-            else if (wvm.Date5Num < wvm.Date4Num)
-            {
-                wvm.Month = DateTime.ParseExact(wvm.Month, "MMMM", null).AddMonths(1).ToString("MMMM");
-            }
-            SelectButton(5);
+            SelectDay(5);
         }
 
         private void Date6Button_Clicked(object sender, EventArgs e)
         {
-            SelectedDay = wvm.Date6Num;
-            if (wvm.Date6Num > wvm.Date7Num)
-            {
-                wvm.Month = DateTime.ParseExact(wvm.Month, "MMMM", null).AddMonths(-1).ToString("MMMM");
-            }
-            else if (wvm.Date6Num < wvm.Date5Num)
-            {
-                wvm.Month = DateTime.ParseExact(wvm.Month, "MMMM", null).AddMonths(1).ToString("MMMM");
-            }
-            SelectButton(6);
+            SelectDay(6);
         }
 
         private void Date7Button_Clicked(object sender, EventArgs e)
         {
-            SelectedDay = wvm.Date7Num;
-            if (wvm.Date7Num > wvm.Date8Num)
-            {
-                wvm.Month = DateTime.ParseExact(wvm.Month, "MMMM", null).AddMonths(-1).ToString("MMMM");
-            }
-            else if (wvm.Date7Num < wvm.Date6Num)
-            {
-                wvm.Month = DateTime.ParseExact(wvm.Month, "MMMM", null).AddMonths(1).ToString("MMMM");
-            }
-            SelectButton(7);
+            SelectDay(7);
         }
 
         private void Date8Button_Clicked(object sender, EventArgs e)
         {
-            SelectedDay = wvm.Date8Num;
-            if (wvm.Date8Num > wvm.Date9Num)
-            {
-                wvm.Month = DateTime.ParseExact(wvm.Month, "MMMM", null).AddMonths(-1).ToString("MMMM");
-            }
-            else if (wvm.Date8Num < wvm.Date7Num)
-            {
-                wvm.Month = DateTime.ParseExact(wvm.Month, "MMMM", null).AddMonths(1).ToString("MMMM");
-            }
-            SelectButton(8);
+            SelectDay(8);
         }
 
         private void Date9Button_Clicked(object sender, EventArgs e)
         {
-            SelectedDay = wvm.Date9Num;
-            if (wvm.Date9Num > wvm.Date10Num)
-            {
-                wvm.Month = DateTime.ParseExact(wvm.Month, "MMMM", null).AddMonths(-1).ToString("MMMM");
-            }
-            else if (wvm.Date9Num < wvm.Date8Num)
-            {
-                wvm.Month = DateTime.ParseExact(wvm.Month, "MMMM", null).AddMonths(1).ToString("MMMM");
-            }
-            SelectButton(9);
+            SelectDay(9);
         }
 
         private void Date10Button_Clicked(object sender, EventArgs e)
         {
-            SelectedDay = wvm.Date10Num;
-            if (wvm.Date10Num > wvm.Date11Num)
-            {
-                wvm.Month = DateTime.ParseExact(wvm.Month, "MMMM", null).AddMonths(-1).ToString("MMMM");
-            }
-            else if (wvm.Date10Num < wvm.Date9Num)
-            {
-                wvm.Month = DateTime.ParseExact(wvm.Month, "MMMM", null).AddMonths(1).ToString("MMMM");
-            }
-            SelectButton(10);
+            SelectDay(10);
         }
 
         private void Date11Button_Clicked(object sender, EventArgs e)
         {
-            SelectedDay = wvm.Date11Num;
-            if (wvm.Date11Num > wvm.Date12Num)
-            {
-                wvm.Month = DateTime.ParseExact(wvm.Month, "MMMM", null).AddMonths(-1).ToString("MMMM");
-            }
-            else if (wvm.Date11Num < wvm.Date10Num)
-            {
-                wvm.Month = DateTime.ParseExact(wvm.Month, "MMMM", null).AddMonths(1).ToString("MMMM");
-            }
-            SelectButton(11);
+            SelectDay(11);
         }
 
         private void Date12Button_Clicked(object sender, EventArgs e)
         {
-            SelectedDay = wvm.Date12Num;
-            if (wvm.Date12Num > wvm.Date13Num)
-            {
-                wvm.Month = DateTime.ParseExact(wvm.Month, "MMMM", null).AddMonths(-1).ToString("MMMM");
-            }
-            else if (wvm.Date12Num < wvm.Date11Num)
-            {
-                wvm.Month = DateTime.ParseExact(wvm.Month, "MMMM", null).AddMonths(1).ToString("MMMM");
-            }
-            SelectButton(12);
+            SelectDay(12);
         }
 
         private void Date13Button_Clicked(object sender, EventArgs e)
         {
-            SelectedDay = wvm.Date13Num;
-            if (wvm.Date13Num < wvm.Date12Num)
-            {
-                wvm.Month = DateTime.ParseExact(wvm.Month, "MMMM", null).AddMonths(1).ToString("MMMM");
-            }
-            SelectButton(13);
+            SelectDay(13);
         }
     }
 }

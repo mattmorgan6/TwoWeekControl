@@ -5,12 +5,12 @@ using System.Text;
 
 namespace TwoWeekControl
 {
-    class DayViewModel : INotifyPropertyChanged
+    public class DayViewModel : INotifyPropertyChanged
     {
         public DayViewModel()
         {
             DayNumber = 1;
-            DayOpacity = 1;
+            DayOpacity = 0;
             Month = "May";
             Year = 2019;
         }
