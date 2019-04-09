@@ -30,10 +30,9 @@
                 <Label Text="{Binding Monthy}"></Label>
             </ContentView>-->
 
-
-                                        <!--TODO: make a click event and select a date for fun-->
+            
             <!-- Plus Button -->
-            <Button x:Name="AddNewEvent" Text="+"
+            <Button x:Name="AddNewEvent" Text="+" Clicked="AddNewEvent_Clicked"
             Grid.Row="0" 
                     Grid.Column="5" 
                     Grid.ColumnSpan="2" 
@@ -42,8 +41,13 @@
                     BorderWidth="0"
                     BorderColor="Transparent"/>
 
+                             
 
-            
+            <!--    If you want to have day of the week labels: -->
+            <!--<Label Text="SUN" FontSize="8" Grid.Row="2" Grid.Column="0"/>-->
+            <!--<Label Text="MON" FontSize="8" Grid.Row="2" Grid.Column="1"/>-->
+            <!--<Label Text="TUE" FontSize="8" Grid.Row="2" Grid.Column="2"/>-->
+
 
             <!-- Top row of dates -->
             <Label x:Name="Date0" Text="{Binding DayNumber}" Grid.Row="2" Grid.Column="0" HorizontalOptions="Center"/>
@@ -53,7 +57,7 @@
                     BorderColor="IndianRed"
                     BorderWidth="1"/>
 
-            <Label x:Name="Date1" Text="29" Grid.Row="2" Grid.Column="1" HorizontalOptions="Center"/>
+            <Label x:Name="Date1" Text="{Binding DayNumber}" Grid.Row="2" Grid.Column="1" HorizontalOptions="Center"/>
             <Button x:Name="Date1Button" Grid.Row="2" Grid.Column="1" Opacity="{Binding DayOpacity}" Clicked="Date1Button_Clicked"
                     BackgroundColor="Transparent"
                     BorderRadius="10"

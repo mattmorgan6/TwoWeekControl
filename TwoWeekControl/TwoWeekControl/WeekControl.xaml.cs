@@ -23,9 +23,10 @@ namespace TwoWeekControl
 		{
 			InitializeComponent ();
 
-            SetDataList();
+            SetDataList();  //fills up the data list with data, 
+                            //  the list needs to be full for fillDatesWithToday() to work
 
-            SelectDay(6);
+            FillDatesWithToday();
 		}
 
         public void SetDateSelected(int n)
@@ -48,9 +49,43 @@ namespace TwoWeekControl
             return dateSelected;
         }
 
-        //TODO: auto fill the calendar! 
-        //Then allow to shift dates
+        //TODO: Allow to shift dates
         //Then make it look pretty
+
+
+            //populates the calendar with the week of today and selects today.
+        public void FillDatesWithToday()
+        {
+            DateTime today = DateTime.Now;
+
+            int todayOfWeek = (int)today.DayOfWeek;  //0 is sunday ... 6 is saturday
+
+            dataList[todayOfWeek].DayNumber = today.Day;
+            dataList[todayOfWeek].Month = today.ToString("MMMM");
+            dataList[todayOfWeek].Year = today.Year;
+
+            DateTime temp = today.AddDays(1);
+
+            for(int i=todayOfWeek+1; i<dataList.Count; i++)     //populates days after today
+            {
+                dataList[i].DayNumber = temp.Day;
+                dataList[i].Month = temp.ToString("MMMM");
+                dataList[i].Year = temp.Year;
+                temp = temp.AddDays(1);
+            }
+
+            temp = today;
+            for(int i = todayOfWeek-1; i>=0; i--)       //populates days before today
+            {
+                temp = temp.AddDays(-1);
+                dataList[i].DayNumber = temp.Day;
+                dataList[i].Month = temp.ToString("MMMM");
+                dataList[i].Year = temp.Year;
+            }
+
+            SelectDay(todayOfWeek);
+        }
+
 
         private void SetDataList()
         {     //daynumber, opacity, month, year
@@ -219,6 +254,12 @@ namespace TwoWeekControl
         private void Date13Button_Clicked(object sender, EventArgs e)
         {
             SelectDay(13);
+        }
+
+            //This is for the "+" button in the top left
+        private void AddNewEvent_Clicked(object sender, EventArgs e)
+        {
+            SelectDay(6);
         }
     }
 }
