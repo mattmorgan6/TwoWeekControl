@@ -58,13 +58,13 @@ namespace TwoWeekControl
 
             int todayOfWeek = (int)today.DayOfWeek;  //0 is sunday ... 6 is saturday
 
-            ChangeBindingDate(todayOfWeek, today, true);
+            ChangeBindingDate(todayOfWeek, today);
 
             DateTime temp = today.AddDays(1);
 
             for (int i = todayOfWeek + 1; i < dataList.Count; i++)     //populates days after today
             {
-                ChangeBindingDate(i, temp, true);
+                ChangeBindingDate(i, temp);
                 temp = temp.AddDays(1);
             }
 
@@ -72,18 +72,17 @@ namespace TwoWeekControl
             for (int i = todayOfWeek - 1; i >= 0; i--)       //populates days before today
             {
                 temp = temp.AddDays(-1);
-                ChangeBindingDate(i, temp, false);
+                ChangeBindingDate(i, temp);
             }
 
             SelectDay(todayOfWeek);
             //FadeOldDates();
         }
 
-        private void ChangeBindingDate(int i, DateTime temp, Boolean opaque)
+        private void ChangeBindingDate(int i, DateTime temp)
         {
             dataList[i].DayNumber = temp.Day;
             dataList[i].Month = temp.ToString("MMMM");
-            //dataList[i].Month = "September";
             dataList[i].Year = temp.Year;
 
             if(temp < DateTime.Today)
@@ -94,15 +93,6 @@ namespace TwoWeekControl
             {
                 dataList[i].NumOpacity = 1;
             }
-
-            //if (opaque)
-            //{
-            //    dataList[i].NumOpacity = 1;
-            //}
-            //else
-            //{
-            //    dataList[i].NumOpacity = 0.6;
-            //}
 
             if (temp == dateSelected) {
                 SelectDay(i);
@@ -235,7 +225,7 @@ namespace TwoWeekControl
             for(int i=0; i<dataList.Count; i++)
             {
                 lastDate = lastDate.AddDays(1);
-                ChangeBindingDate(i, lastDate, true);
+                ChangeBindingDate(i, lastDate);
                 Debug.WriteLine(lastDate.Date);
             }
         }
@@ -253,7 +243,7 @@ namespace TwoWeekControl
             for (int i = dataList.Count-1; i >= 0; i--)
             {
                 firstDate = firstDate.AddDays(-1);
-                ChangeBindingDate(i, firstDate, false);
+                ChangeBindingDate(i, firstDate);
                 Debug.WriteLine(firstDate.Date);
             }
         }
