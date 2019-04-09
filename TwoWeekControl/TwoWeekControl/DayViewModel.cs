@@ -13,14 +13,16 @@ namespace TwoWeekControl
             DayOpacity = 0;
             Month = "May";
             Year = 2019;
+            NumOpacity = 1;
         }
 
-        public DayViewModel(int dayNumber, double dayOpacity, string month, int year)
+        public DayViewModel(int dayNumber, double dayOpacity, string month, int year, double numOpacity)
         {
             DayNumber = dayNumber;
             DayOpacity = dayOpacity;
             Month = month;
             Year = year;
+            NumOpacity = numOpacity;
         }
 
         private int dayNumber;
@@ -29,7 +31,7 @@ namespace TwoWeekControl
             get { return dayNumber; }
             set
             {
-                if(value != dayNumber)
+                if (value != dayNumber)
                 {
                     dayNumber = value;
                     OnNotifyPropertyChanged(nameof(DayNumber));
@@ -75,6 +77,20 @@ namespace TwoWeekControl
                 {
                     year = value;
                     OnNotifyPropertyChanged(nameof(Year));
+                }
+            }
+        }
+
+        private double numOpacity;
+        public double NumOpacity
+        {
+            get { return numOpacity; }
+            set
+            {
+                if (value != numOpacity)
+                {
+                    numOpacity = value;
+                    OnNotifyPropertyChanged(nameof(NumOpacity));
                 }
             }
         }
