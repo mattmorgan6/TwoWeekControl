@@ -58,13 +58,13 @@ namespace TwoWeekControl
 
             int todayOfWeek = (int)today.DayOfWeek;  //0 is sunday ... 6 is saturday
 
-            ChangeBindingDay(todayOfWeek, today);
+            ChangeBindingDate(todayOfWeek, today, true);
 
             DateTime temp = today.AddDays(1);
 
             for (int i = todayOfWeek + 1; i < dataList.Count; i++)     //populates days after today
             {
-                ChangeBindingDay(i, temp);
+                ChangeBindingDate(i, temp, true);
                 temp = temp.AddDays(1);
             }
 
@@ -72,19 +72,45 @@ namespace TwoWeekControl
             for (int i = todayOfWeek - 1; i >= 0; i--)       //populates days before today
             {
                 temp = temp.AddDays(-1);
-                ChangeBindingDay(i, temp);
+                ChangeBindingDate(i, temp, false);
             }
 
             SelectDay(todayOfWeek);
-            FadeOldDates();
+            //FadeOldDates();
         }
 
-        private void ChangeBindingDay(int i, DateTime temp)
+        private void ChangeBindingDate(int i, DateTime temp, Boolean opaque)
         {
             dataList[i].DayNumber = temp.Day;
-            //dataList[i].Month = temp.ToString("MMMM");
-            dataList[i].Month = "September";
+            dataList[i].Month = temp.ToString("MMMM");
+            //dataList[i].Month = "September";
             dataList[i].Year = temp.Year;
+
+            if(temp < DateTime.Today)
+            {
+                dataList[i].NumOpacity = 0.6;
+            }
+            else
+            {
+                dataList[i].NumOpacity = 1;
+            }
+
+            //if (opaque)
+            //{
+            //    dataList[i].NumOpacity = 1;
+            //}
+            //else
+            //{
+            //    dataList[i].NumOpacity = 0.6;
+            //}
+
+            if (temp == dateSelected) {
+                SelectDay(i);
+            }
+            else
+            {
+                dataList[i].DayOpacity = 0;
+            }
         }
 
 
@@ -196,20 +222,43 @@ namespace TwoWeekControl
             SetDateSelected(n);
         }
 
-        public void ShiftDates()
+        public void ShiftDatesForward()
         {
-            DateTime lastDate;
+            DateTime lastDate = DateTime.Today;
             string day = dataList[dataList.Count - 1].DayNumber.ToString();
             string month = dataList[dataList.Count - 1].Month;
             string year = dataList[dataList.Count - 1].Year.ToString();
             string sum = year + "-" + month + "-" + day;
 
-            Debug.WriteLine("Sum " + sum);
-            //If successful parse, this line prints true 
-            Debug.WriteLine("Parse: " + DateTime.TryParseExact(sum, "yyyy-MMMM-d", null, System.Globalization.DateTimeStyles.None, out dateSelected));
-            //If successful parse, this line prints the selected date, if failed, the line prints 1/1/2001
-            Debug.WriteLine("Date selected: " + dateSelected.ToShortDateString());
+            Debug.WriteLine("Parse: " + DateTime.TryParseExact(sum, "yyyy-MMMM-d", null, System.Globalization.DateTimeStyles.None, out lastDate));
+
+            for(int i=0; i<dataList.Count; i++)
+            {
+                lastDate = lastDate.AddDays(1);
+                ChangeBindingDate(i, lastDate, true);
+                Debug.WriteLine(lastDate.Date);
+            }
         }
+
+        public void ShiftDatesBackward()
+        {
+            DateTime firstDate = DateTime.Today;
+            string day = dataList[0].DayNumber.ToString();
+            string month = dataList[0].Month;
+            string year = dataList[0].Year.ToString();
+            string sum = year + "-" + month + "-" + day;
+
+            Debug.WriteLine("Parse: " + DateTime.TryParseExact(sum, "yyyy-MMMM-d", null, System.Globalization.DateTimeStyles.None, out firstDate));
+
+            for (int i = dataList.Count-1; i >= 0; i--)
+            {
+                firstDate = firstDate.AddDays(-1);
+                ChangeBindingDate(i, firstDate, false);
+                Debug.WriteLine(firstDate.Date);
+            }
+        }
+
+
 
 
 
@@ -220,8 +269,8 @@ namespace TwoWeekControl
         private void Date0Button_Clicked(object sender, EventArgs e)
         {
             //var button = sender as Button;
-            //var theValue = button.Id;
-            //YearLabel.Text = theValue.ToString(); //todo: know which date is pressed.
+            //var theValue = button.Id;     //this gets the id of the button that was pressed.
+            //YearLabel.Text = theValue.ToString();    // The problem is that the button is assigned a random id on startup.
 
             SelectDay(0);
         }
@@ -302,12 +351,12 @@ namespace TwoWeekControl
         private void LeftArrow_Clicked(object sender, EventArgs e)
         {
             //todo: shift dates
-            ShiftDates();
+            ShiftDatesBackward();
         }
 
         private void RightArrow_Clicked(object sender, EventArgs e)
         {
-            ShiftDates();
+            ShiftDatesForward();
         }
     }
 }

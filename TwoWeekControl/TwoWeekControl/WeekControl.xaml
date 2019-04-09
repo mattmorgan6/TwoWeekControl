@@ -23,14 +23,26 @@
             </Grid.ColumnDefinitions>
 
             <!-- Year and Month Labels -->
-            <Label x:Name="YearLabel" Text="{Binding Year}" Grid.Row="0" Grid.ColumnSpan="4" Grid.Column="0"/>
+            <Label x:Name="YearLabel" Text="{Binding Year}" Grid.Row="0" Grid.ColumnSpan="3" Grid.Column="0"/>
             <Label x:Name="MonthLabel" Text="{Binding Month}" Grid.Row="1" Grid.ColumnSpan="4" Grid.Column="0"/>
 
             <!--<ContentView x:Name="Tester" Grid.Row="1" Grid.ColumnSpan="4" Grid.Column="0">
                 <Label Text="{Binding Monthy}"></Label>
             </ContentView>-->
 
-            
+
+            <Button x:Name="leftArrow" Text="&lt;" Grid.Row="0" Grid.Column="3" Clicked="LeftArrow_Clicked"
+                    FontSize="9"
+                    BackgroundColor="Transparent" 
+                    BorderColor="Transparent" 
+                    BorderWidth="0"/>
+            <Button x:Name="rightArrow" Text="&gt;" Grid.Row="0" Grid.Column="4" Clicked="RightArrow_Clicked" 
+                    FontSize="9"
+                    BackgroundColor="Transparent" 
+                    BorderColor="Transparent" 
+                    BorderWidth="0"/>
+
+
             <!-- Plus Button -->
             <Button x:Name="AddNewEvent" Text="+" Clicked="AddNewEvent_Clicked"
             Grid.Row="0" 
