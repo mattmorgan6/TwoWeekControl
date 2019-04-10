@@ -339,7 +339,7 @@ namespace TwoWeekControl
         //This is for the "+" button in the top left
         private void AddNewEvent_Clicked(object sender, EventArgs e)
         {
-            //todo: link this with the base class
+            //todo: link this with the controller class 
         }
 
         private void LeftArrow_Clicked(object sender, EventArgs e)
