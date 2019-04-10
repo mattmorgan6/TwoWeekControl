@@ -48,8 +48,9 @@ namespace TwoWeekControl
         {
             return dateSelected;
         }
-
-        //TODO: Allow to shift dates
+        
+        //TODO: >put a little marker on today.
+        //      >put in a color option. :)
 
         //populates the calendar with the week of today and selects today.
         public void FillDatesWithToday()
@@ -57,7 +58,7 @@ namespace TwoWeekControl
             DateTime today = DateTime.Now;
 
             int todayOfWeek = (int)today.DayOfWeek;  //0 is sunday ... 6 is saturday
-
+             
             ChangeBindingDate(todayOfWeek, today);
 
             DateTime temp = today.AddDays(1);
@@ -125,61 +126,65 @@ namespace TwoWeekControl
 
         private void SetDataList()
         {     //daynumber, opacity, month, year
-            dataList.Add(new DayViewModel(28, 0, "April", 2019, 1));
+            dataList.Add(new DayViewModel(28, 0, "April", 2019, 1, "White"));
             Date0.BindingContext = dataList[0];
             Date0Button.BindingContext = dataList[0];
             YearLabel.BindingContext = dataList[0];
             MonthLabel.BindingContext = dataList[0];
+            LeftArrow.BindingContext = dataList[0];
+            RightArrow.BindingContext = dataList[0];
+            AddNewEvent.BindingContext = dataList[0];
 
-            dataList.Add(new DayViewModel(29, 0, "April", 2019, 1));
+
+            dataList.Add(new DayViewModel(29, 0, "April", 2019, 1, "White"));
             Date1.BindingContext = dataList[1];
             Date1Button.BindingContext = dataList[1];
 
-            dataList.Add(new DayViewModel(30, 0, "April", 2019, 1));
+            dataList.Add(new DayViewModel(30, 0, "April", 2019, 1, "White"));
             Date2.BindingContext = dataList[2];
             Date2Button.BindingContext = dataList[2];
 
-            dataList.Add(new DayViewModel(1, 0, "May", 2019, 1));
+            dataList.Add(new DayViewModel(1, 0, "May", 2019, 1, "White"));
             Date3.BindingContext = dataList[3];
             Date3Button.BindingContext = dataList[3];
 
-            dataList.Add(new DayViewModel(2, 1, "May", 2019, 1));
+            dataList.Add(new DayViewModel(2, 1, "May", 2019, 1, "White"));
             Date4.BindingContext = dataList[4];
             Date4Button.BindingContext = dataList[4];
 
-            dataList.Add(new DayViewModel(3, 0, "May", 2019, 1));
+            dataList.Add(new DayViewModel(3, 0, "May", 2019, 1, "White"));
             Date5.BindingContext = dataList[5];
             Date5Button.BindingContext = dataList[5];
 
-            dataList.Add(new DayViewModel(4, 0, "May", 2019, 1));
+            dataList.Add(new DayViewModel(4, 0, "May", 2019, 1, "White"));
             Date6.BindingContext = dataList[6];
             Date6Button.BindingContext = dataList[6];
 
-            dataList.Add(new DayViewModel(5, 0, "May", 2019, 1));
+            dataList.Add(new DayViewModel(5, 0, "May", 2019, 1, "White"));
             Date7.BindingContext = dataList[7];
             Date7Button.BindingContext = dataList[7];
 
-            dataList.Add(new DayViewModel(6, 0, "May", 2019, 1));
+            dataList.Add(new DayViewModel(6, 0, "May", 2019, 1, "White"));
             Date8.BindingContext = dataList[8];
             Date8Button.BindingContext = dataList[8];
 
-            dataList.Add(new DayViewModel(7, 0, "May", 2019, 1));
+            dataList.Add(new DayViewModel(7, 0, "May", 2019, 1, "White"));
             Date9.BindingContext = dataList[9];
             Date9Button.BindingContext = dataList[9];
 
-            dataList.Add(new DayViewModel(8, 0, "May", 2019, 1));
+            dataList.Add(new DayViewModel(8, 0, "May", 2019, 1, "White"));
             Date10.BindingContext = dataList[10];
             Date10Button.BindingContext = dataList[10];
 
-            dataList.Add(new DayViewModel(9, 0, "May", 2019, 1));
+            dataList.Add(new DayViewModel(9, 0, "May", 2019, 1, "White"));
             Date11.BindingContext = dataList[11];
             Date11Button.BindingContext = dataList[11];
 
-            dataList.Add(new DayViewModel(10, 0, "May", 2019, 1));
+            dataList.Add(new DayViewModel(10, 0, "May", 2019, 1, "White"));
             Date12.BindingContext = dataList[12];
             Date12Button.BindingContext = dataList[12];
 
-            dataList.Add(new DayViewModel(11, 0, "May", 2019, 1));
+            dataList.Add(new DayViewModel(11, 0, "May", 2019, 1, "White"));
             Date13.BindingContext = dataList[13];
             Date13Button.BindingContext = dataList[13];
         }
@@ -334,13 +339,11 @@ namespace TwoWeekControl
         //This is for the "+" button in the top left
         private void AddNewEvent_Clicked(object sender, EventArgs e)
         {
-            //SelectDay(6);
-            dataList[1].NumOpacity = 0.5;
+            //todo: link this with the base class
         }
 
         private void LeftArrow_Clicked(object sender, EventArgs e)
         {
-            //todo: shift dates
             ShiftDatesBackward();
         }
 

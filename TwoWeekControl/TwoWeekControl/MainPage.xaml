@@ -4,7 +4,7 @@
              xmlns:local="clr-namespace:TwoWeekControl"
              x:Class="TwoWeekControl.MainPage">
 
-    <StackLayout>
+    <StackLayout BackgroundColor="DarkBlue">
         <Frame Margin="0, 50, 0, 0" HorizontalOptions="Center" VerticalOptions="Start" OutlineColor="Black">
             <local:WeekControl x:Name="hwControl"></local:WeekControl>
         </Frame>

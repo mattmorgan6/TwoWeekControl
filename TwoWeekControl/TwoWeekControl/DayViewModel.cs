@@ -14,15 +14,17 @@ namespace TwoWeekControl
             Month = "May";
             Year = 2019;
             NumOpacity = 1;
+            ColorTheme = "Black";
         }
 
-        public DayViewModel(int dayNumber, double dayOpacity, string month, int year, double numOpacity)
+        public DayViewModel(int dayNumber, double dayOpacity, string month, int year, double numOpacity, string colorTheme)
         {
             DayNumber = dayNumber;
             DayOpacity = dayOpacity;
             Month = month;
             Year = year;
             NumOpacity = numOpacity;
+            ColorTheme = colorTheme;
         }
 
         private int dayNumber;
@@ -91,6 +93,20 @@ namespace TwoWeekControl
                 {
                     numOpacity = value;
                     OnNotifyPropertyChanged(nameof(NumOpacity));
+                }
+            }
+        }
+
+        private string colorTheme;
+        public string ColorTheme
+        {
+            get { return colorTheme; }
+            set
+            {
+                if(value != colorTheme)
+                {
+                    colorTheme = value;
+                    OnNotifyPropertyChanged(nameof(ColorTheme));
                 }
             }
         }
