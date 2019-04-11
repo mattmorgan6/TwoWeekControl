@@ -30,7 +30,12 @@ namespace TwoWeekControl.Controls
         public DateTime Date
         {
             get => date;
-            set => modifyProperty(ref value, ref date, nameof(Date));
+            set
+            {
+                modifyProperty(ref value, ref date, nameof(Date));
+                OnNotifyPropertyChanged(nameof(Month));
+            }
+               
         }
 
         /// <summary>
