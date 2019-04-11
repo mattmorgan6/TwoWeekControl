@@ -20,10 +20,62 @@ namespace TwoWeekControl.Controls
         {
             InitializeComponent();
 
-            SetDataList();  //fills up the data list with data, 
+            setUpDateElements();
+            //SetDataList();  //fills up the data list with data, 
                             //  the list needs to be full for fillDatesWithToday() to work
 
             FillDatesWithToday();
+        }
+
+        private void setUpDateElements()
+        {
+            DateTime date = new DateTime(2019, 4, 28);
+
+            for (int i = 0; i < 2; i++)
+            {
+                for (int j = 0; j < 7; j++)
+                {
+                    dataList.Add(new DayViewModel(date.Day, 0, date.ToString("MMMM"), date.Year, 1, "White"));
+                    date.AddDays(1);
+
+                    if (i == 0 & j == 0)
+                    {
+                        YearLabel.BindingContext = dataList[0];
+                        MonthLabel.BindingContext = dataList[0];
+                        LeftArrowButton.BindingContext = dataList[0];
+                        RightArrowButton.BindingContext = dataList[0];
+                        PlusButton.BindingContext = dataList[0];
+                    }
+
+                    // Label for the date number
+                    Label tempLabel = new Label();
+                    tempLabel.SetValue(Grid.RowProperty, i + 2);
+                    tempLabel.SetValue(Grid.ColumnProperty, j);
+                    tempLabel.HorizontalOptions = LayoutOptions.Center;
+
+                    tempLabel.BindingContext = dataList[i * 7 + j];
+                    tempLabel.SetBinding(Label.TextProperty, new Binding("DayNumber"));
+                    tempLabel.SetBinding(Label.TextColorProperty, new Binding("ColorTheme"));
+                    tempLabel.SetBinding(OpacityProperty, new Binding("NumOpacity"));
+
+                    MainGrid.Children.Add(tempLabel);
+
+                    // Button behind the Label for the touch event when the number is clicked
+                    Button tempButton = new Button();
+                    tempButton.SetValue(Grid.RowProperty, i + 2);
+                    tempButton.SetValue(Grid.ColumnProperty, j);
+                    tempButton.BackgroundColor = Color.Transparent;
+                    tempButton.CornerRadius = 10;
+                    tempButton.BorderWidth = 1;
+                    tempButton.Clicked += DateButton_Clicked;
+
+                    tempButton.BindingContext = dataList[i * 7 + j];
+                    tempButton.SetBinding(Button.BorderColorProperty, new Binding("ColorTheme"));
+                    tempButton.SetBinding(OpacityProperty, new Binding("CircleOpacity"));
+
+                    MainGrid.Children.Add(tempButton);
+                }
+            }
         }
 
         public void SetDateSelected(int n)
@@ -113,82 +165,6 @@ namespace TwoWeekControl.Controls
             }
         }
 
-
-
-
-
-
-
-
-
-
-        private void SetDataList()
-        {     //daynumber, opacity, month, year
-            dataList.Add(new DayViewModel(28, 0, "April", 2019, 1, "White"));
-            Date0.BindingContext = dataList[0];
-            Date0Button.BindingContext = dataList[0];
-            YearLabel.BindingContext = dataList[0];
-            MonthLabel.BindingContext = dataList[0];
-            LeftArrowButton.BindingContext = dataList[0];
-            RightArrowButton.BindingContext = dataList[0];
-            PlusButton.BindingContext = dataList[0];
-
-
-            dataList.Add(new DayViewModel(29, 0, "April", 2019, 1, "White"));
-            Date1.BindingContext = dataList[1];
-            Date1Button.BindingContext = dataList[1];
-
-            dataList.Add(new DayViewModel(30, 0, "April", 2019, 1, "White"));
-            Date2.BindingContext = dataList[2];
-            Date2Button.BindingContext = dataList[2];
-
-            dataList.Add(new DayViewModel(1, 0, "May", 2019, 1, "White"));
-            Date3.BindingContext = dataList[3];
-            Date3Button.BindingContext = dataList[3];
-
-            dataList.Add(new DayViewModel(2, 1, "May", 2019, 1, "White"));
-            Date4.BindingContext = dataList[4];
-            Date4Button.BindingContext = dataList[4];
-
-            dataList.Add(new DayViewModel(3, 0, "May", 2019, 1, "White"));
-            Date5.BindingContext = dataList[5];
-            Date5Button.BindingContext = dataList[5];
-
-            dataList.Add(new DayViewModel(4, 0, "May", 2019, 1, "White"));
-            Date6.BindingContext = dataList[6];
-            Date6Button.BindingContext = dataList[6];
-
-            dataList.Add(new DayViewModel(5, 0, "May", 2019, 1, "White"));
-            Date7.BindingContext = dataList[7];
-            Date7Button.BindingContext = dataList[7];
-
-            dataList.Add(new DayViewModel(6, 0, "May", 2019, 1, "White"));
-            Date8.BindingContext = dataList[8];
-            Date8Button.BindingContext = dataList[8];
-
-            dataList.Add(new DayViewModel(7, 0, "May", 2019, 1, "White"));
-            Date9.BindingContext = dataList[9];
-            Date9Button.BindingContext = dataList[9];
-
-            dataList.Add(new DayViewModel(8, 0, "May", 2019, 1, "White"));
-            Date10.BindingContext = dataList[10];
-            Date10Button.BindingContext = dataList[10];
-
-            dataList.Add(new DayViewModel(9, 0, "May", 2019, 1, "White"));
-            Date11.BindingContext = dataList[11];
-            Date11Button.BindingContext = dataList[11];
-
-            dataList.Add(new DayViewModel(10, 0, "May", 2019, 1, "White"));
-            Date12.BindingContext = dataList[12];
-            Date12Button.BindingContext = dataList[12];
-
-            dataList.Add(new DayViewModel(11, 0, "May", 2019, 1, "White"));
-            Date13.BindingContext = dataList[13];
-            Date13Button.BindingContext = dataList[13];
-        }
-
-
-
         private void CircleDate(int n)
         {
             for (int i = 0; i < dataList.Count; i++)
@@ -252,86 +228,15 @@ namespace TwoWeekControl.Controls
         }
 
 
-
-
-
-
-
         //Event Handlers:
 
-        private void Date0Button_Clicked(object sender, EventArgs e)
+        private void DateButton_Clicked(object sender, EventArgs e)
         {
-            //var button = sender as Button;
-            //var theValue = button.Id;     //this gets the id of the button that was pressed.
-            //YearLabel.Text = theValue.ToString();    // The problem is that the button is assigned a random id on startup.
+            Button button = sender as Button;
+            int column = (int) button.GetValue(Grid.ColumnProperty);
+            int row = (int)button.GetValue(Grid.RowProperty);
 
-            SelectDay(0);
-        }
-
-        private void Date1Button_Clicked(object sender, EventArgs e)
-        {
-            SelectDay(1);
-        }
-
-        private void Date2Button_Clicked(object sender, EventArgs e)
-        {
-            SelectDay(2);
-        }
-
-        private void Date3Button_Clicked(object sender, EventArgs e)
-        {
-            SelectDay(3);
-
-        }
-
-        private void Date4Button_Clicked(object sender, EventArgs e)
-        {
-            SelectDay(4);
-        }
-
-        private void Date5Button_Clicked(object sender, EventArgs e)
-        {
-            SelectDay(5);
-        }
-
-        private void Date6Button_Clicked(object sender, EventArgs e)
-        {
-            SelectDay(6);
-        }
-
-        private void Date7Button_Clicked(object sender, EventArgs e)
-        {
-            SelectDay(7);
-        }
-
-        private void Date8Button_Clicked(object sender, EventArgs e)
-        {
-            SelectDay(8);
-        }
-
-        private void Date9Button_Clicked(object sender, EventArgs e)
-        {
-            SelectDay(9);
-        }
-
-        private void Date10Button_Clicked(object sender, EventArgs e)
-        {
-            SelectDay(10);
-        }
-
-        private void Date11Button_Clicked(object sender, EventArgs e)
-        {
-            SelectDay(11);
-        }
-
-        private void Date12Button_Clicked(object sender, EventArgs e)
-        {
-            SelectDay(12);
-        }
-
-        private void Date13Button_Clicked(object sender, EventArgs e)
-        {
-            SelectDay(13);
+            SelectDay((row - 2) * 7 + column);
         }
 
         //This is for the "+" button in the top left
