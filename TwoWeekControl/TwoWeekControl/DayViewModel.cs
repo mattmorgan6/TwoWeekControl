@@ -7,6 +7,15 @@ namespace TwoWeekControl
 {
     public class DayViewModel : INotifyPropertyChanged
     {
+
+        //@Params:
+        //    dayNumber: The number of the month Range: 1-31
+        //    numOpacity: The opacity of the month number.Used to make the old dates faded.
+        //    colorTheme: The color of every item.White works best with dark theme!
+        //    circleOpacity: The opacity of the button, which has a circular outline.When a user selects a date, it becomes circled (Opacity = 1).
+        //    month: Month of the selected day. 
+        //    year: Year of the selected day.
+            
         public DayViewModel()
         {
             DayNumber = 1;
@@ -17,10 +26,10 @@ namespace TwoWeekControl
             ColorTheme = "Black";
         }
 
-        public DayViewModel(int dayNumber, double CircleOpacity, string month, int year, double numOpacity, string colorTheme)
+        public DayViewModel(int dayNumber, double circleOpacity, string month, int year, double numOpacity, string colorTheme)
         {
             DayNumber = dayNumber;
-            CircleOpacity = CircleOpacity;
+            CircleOpacity = circleOpacity;
             Month = month;
             Year = year;
             NumOpacity = numOpacity;
