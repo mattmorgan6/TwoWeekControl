@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -132,9 +129,9 @@ namespace TwoWeekControl.Controls
             Date0Button.BindingContext = dataList[0];
             YearLabel.BindingContext = dataList[0];
             MonthLabel.BindingContext = dataList[0];
-            LeftArrow.BindingContext = dataList[0];
-            RightArrow.BindingContext = dataList[0];
-            AddNewEvent.BindingContext = dataList[0];
+            LeftArrowButton.BindingContext = dataList[0];
+            RightArrowButton.BindingContext = dataList[0];
+            PlusButton.BindingContext = dataList[0];
 
 
             dataList.Add(new DayViewModel(29, 0, "April", 2019, 1, "White"));
@@ -338,17 +335,17 @@ namespace TwoWeekControl.Controls
         }
 
         //This is for the "+" button in the top left
-        private void AddNewEvent_Clicked(object sender, EventArgs e)
+        private void PlusButton_Clicked(object sender, EventArgs e)
         {
             //todo: link this with the controller class 
         }
 
-        private void LeftArrow_Clicked(object sender, EventArgs e)
+        private void LeftArrowButton_Clicked(object sender, EventArgs e)
         {
             ShiftDatesBackward();
         }
 
-        private void RightArrow_Clicked(object sender, EventArgs e)
+        private void RightArrowButton_Clicked(object sender, EventArgs e)
         {
             ShiftDatesForward();
         }

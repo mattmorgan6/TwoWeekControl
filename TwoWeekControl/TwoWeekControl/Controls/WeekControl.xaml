@@ -36,7 +36,7 @@
 
             <!-- These buttons are the left and right arrows that make the calendar go
                  forward and backward in time -->
-            <Button x:Name="LeftArrow"
+            <Button x:Name="LeftArrowButton"
                     Grid.Column="3"
                     Text="&lt;"
                     TextColor="{Binding ColorTheme}"
@@ -44,8 +44,8 @@
                     BackgroundColor="Transparent"
                     BorderColor="Transparent"
                     BorderWidth="0"
-                    Clicked="LeftArrow_Clicked" />
-            <Button x:Name="RightArrow"
+                    Clicked="LeftArrowButton_Clicked" />
+            <Button x:Name="RightArrowButton"
                     Grid.Column="4"
                     Text="&gt;"
                     TextColor="{Binding ColorTheme}"
@@ -53,10 +53,10 @@
                     BackgroundColor="Transparent"
                     BorderColor="Transparent"
                     BorderWidth="0"
-                    Clicked="RightArrow_Clicked" />
+                    Clicked="RightArrowButton_Clicked" />
 
             <!-- Plus Button, in the future this will add a new HW event -->
-            <Button x:Name="AddNewEvent"
+            <Button x:Name="PlusButton"
                     Grid.RowSpan="2"
                     Grid.Column="5"
                     Grid.ColumnSpan="2"
@@ -65,16 +65,16 @@
                     BackgroundColor="Transparent"
                     BorderWidth="0"
                     BorderColor="Transparent"
-                    Clicked="AddNewEvent_Clicked" />
+                    Clicked="PlusButton_Clicked" />
 
             <!-- If you want to have day of the week labels -->
-            <!--<Label Text="SUN" FontSize="8" Grid.Row="2" Grid.Column="0"/>-->
-            <!--<Label Text="MON" FontSize="8" Grid.Row="2" Grid.Column="1"/>-->
-            <!--<Label Text="TUE" FontSize="8" Grid.Row="2" Grid.Column="2"/>-->
-            <!--<Label Text="WED" FontSize="8" Grid.Row="2" Grid.Column="3"/>-->
-            <!--<Label Text="THS" FontSize="8" Grid.Row="2" Grid.Column="4"/>-->
-            <!--<Label Text="FRI" FontSize="8" Grid.Row="2" Grid.Column="5"/>-->
-            <!--<Label Text="SAT" FontSize="8" Grid.Row="2" Grid.Column="6"/>-->
+            <!-- <Label Text="SUN" FontSize="8" Grid.Row="2" /> -->
+            <!-- <Label Text="MON" FontSize="8" Grid.Row="2" Grid.Column="1"/> -->
+            <!-- <Label Text="TUE" FontSize="8" Grid.Row="2" Grid.Column="2"/> -->
+            <!-- <Label Text="WED" FontSize="8" Grid.Row="2" Grid.Column="3"/> -->
+            <!-- <Label Text="THS" FontSize="8" Grid.Row="2" Grid.Column="4"/> -->
+            <!-- <Label Text="FRI" FontSize="8" Grid.Row="2" Grid.Column="5"/> -->
+            <!-- <Label Text="SAT" FontSize="8" Grid.Row="2" Grid.Column="6"/> -->
 
             <!-- Top row of dates -->
             <!-- Each of these are a label for the date number, and a button behind
