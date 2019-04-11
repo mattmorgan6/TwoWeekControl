@@ -101,7 +101,7 @@ namespace TwoWeekControl.Controls
             }
             else
             {
-                dataList[i].DayOpacity = 0;
+                dataList[i].CircleOpacity = 0;
             }
         }
 
@@ -198,10 +198,10 @@ namespace TwoWeekControl.Controls
             {
                 if (i != n)
                 {
-                    dataList[i].DayOpacity = 0;
+                    dataList[i].CircleOpacity = 0;
                 }
             }
-            dataList[n].DayOpacity = 1;
+            dataList[n].CircleOpacity = 1;
         }
 
         private void ChangeMonthYearBinding(int n)

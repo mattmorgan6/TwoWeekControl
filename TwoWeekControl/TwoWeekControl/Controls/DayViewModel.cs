@@ -5,7 +5,7 @@ namespace TwoWeekControl.Controls
     public class DayViewModel : INotifyPropertyChanged
     {
         //* Private Properties
-        private double dayOpacity;
+        private double circleOpacity;
         private double numOpacity;
 
         private int dayNumber;
@@ -15,33 +15,48 @@ namespace TwoWeekControl.Controls
         private string month;
 
         //* Public Properties
-        public double DayOpacity
+
+        /// <summary>
+        /// The opacity of the button, which has a circular outline. When a user
+        /// selects a date, it becomes circled (Opacity = 1).
+        /// </summary>
+        public double CircleOpacity
         {
-            get => dayOpacity;
-            set => modifyProperty(ref value, ref dayOpacity, nameof(DayOpacity));
+            get => circleOpacity;
+            set => modifyProperty(ref value, ref circleOpacity, nameof(CircleOpacity));
         }
+        ///  <summary>
+        /// The opacity of the month number.Used to make the old dates faded.
+        /// </summary>
+        /// <value></value>
         public double NumOpacity
         {
             get => numOpacity;
             set => modifyProperty(ref value, ref numOpacity, nameof(NumOpacity));
         }
 
+        /// <summary>The number of the month (Range: 1-31)</summary>
         public int DayNumber
         {
             get => dayNumber;
             set => modifyProperty(ref value, ref dayNumber, nameof(DayNumber));
         }
+        /// <summary>Year of the selected day.</summary>
         public int Year
         {
             get => year;
             set => modifyProperty(ref value, ref year, nameof(Year));
         }
 
+        /// <summary>
+        /// The color of every item.White works best with dark theme!
+        /// </summary>
         public string ColorTheme
         {
             get => colorTheme;
             set => modifyProperty(ref value, ref colorTheme, nameof(ColorTheme));
         }
+        /// <summary>Month of the selected day.</summary>
         public string Month
         {
             get => month;
@@ -51,11 +66,24 @@ namespace TwoWeekControl.Controls
         //* Constructors
         public DayViewModel() : this(1, 0, "May", 2019, 1, "Black") { }
 
-        public DayViewModel(int dayNumber, double dayOpacity, string month, int year,
+        /// <param name="dayNumber">The number of the month (Range: 1-31)</param>
+        /// <param name="circleOpacity">
+        /// The opacity of the button, which has a circular outline. When a user
+        /// selects a date, it becomes circled (Opacity = 1).
+        /// </param>
+        /// <param name="month">Month of the selected day.</param>
+        /// <param name="year">Year of the selected day.</param>
+        /// <param name="numOpacity">
+        /// The opacity of the month number. Used to make the old dates faded.
+        /// </param>
+        /// <param name="colorTheme">
+        /// The color of every item.White works best with dark theme!
+        /// </param>
+        public DayViewModel(int dayNumber, double circleOpacity, string month, int year,
             double numOpacity, string colorTheme)
         {
             DayNumber = dayNumber;
-            DayOpacity = dayOpacity;
+            CircleOpacity = circleOpacity;
             Month = month;
             Year = year;
             NumOpacity = numOpacity;
