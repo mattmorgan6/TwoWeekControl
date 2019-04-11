@@ -35,7 +35,7 @@ namespace TwoWeekControl.Controls
             {
                 for (int j = 0; j < 7; j++)
                 {
-                    dataList.Add(new DayViewModel(date.Day, 0, date.ToString("MMMM"), date.Year, 1, "White"));
+                    dataList.Add(new DayViewModel(date, 0, 1, Color.White));
                     date.AddDays(1);
 
                     if (i == 0 & j == 0)
@@ -54,7 +54,7 @@ namespace TwoWeekControl.Controls
                     tempLabel.HorizontalOptions = LayoutOptions.Center;
 
                     tempLabel.BindingContext = dataList[i * 7 + j];
-                    tempLabel.SetBinding(Label.TextProperty, new Binding("DayNumber"));
+                    tempLabel.SetBinding(Label.TextProperty, new Binding("Date.Day"));
                     tempLabel.SetBinding(Label.TextColorProperty, new Binding("ColorTheme"));
                     tempLabel.SetBinding(OpacityProperty, new Binding("NumOpacity"));
 
@@ -80,9 +80,9 @@ namespace TwoWeekControl.Controls
 
         public void SetDateSelected(int n)
         {
-            string year = dataList[n].Year.ToString();
+            string year = dataList[n].Date.Year.ToString();
             string month = dataList[n].Month;
-            string day = dataList[n].DayNumber.ToString();
+            string day = dataList[n].Date.Day.ToString();
 
             string sum = year + "-" + month + "-" + day;
 
@@ -131,9 +131,7 @@ namespace TwoWeekControl.Controls
 
         private void ChangeBindingDate(int i, DateTime temp)
         {
-            dataList[i].DayNumber = temp.Day;
-            dataList[i].Month = temp.ToString("MMMM");
-            dataList[i].Year = temp.Year;
+            dataList[i].Date = temp;
 
             if (temp < DateTime.Today)
             {
@@ -194,9 +192,9 @@ namespace TwoWeekControl.Controls
         public void ShiftDatesForward()
         {
             DateTime lastDate = DateTime.Today;
-            string day = dataList[dataList.Count - 1].DayNumber.ToString();
+            string day = dataList[dataList.Count - 1].Date.Day.ToString();
             string month = dataList[dataList.Count - 1].Month;
-            string year = dataList[dataList.Count - 1].Year.ToString();
+            string year = dataList[dataList.Count - 1].Date.Year.ToString();
             string sum = year + "-" + month + "-" + day;
 
             Debug.WriteLine("Parse: " + DateTime.TryParseExact(sum, "yyyy-MMMM-d", null, System.Globalization.DateTimeStyles.None, out lastDate));
@@ -212,9 +210,9 @@ namespace TwoWeekControl.Controls
         public void ShiftDatesBackward()
         {
             DateTime firstDate = DateTime.Today;
-            string day = dataList[0].DayNumber.ToString();
+            string day = dataList[0].Date.Day.ToString();
             string month = dataList[0].Month;
-            string year = dataList[0].Year.ToString();
+            string year = dataList[0].Date.Year.ToString();
             string sum = year + "-" + month + "-" + day;
 
             Debug.WriteLine("Parse: " + DateTime.TryParseExact(sum, "yyyy-MMMM-d", null, System.Globalization.DateTimeStyles.None, out firstDate));
