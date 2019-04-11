@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
+using System.Globalization;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -10,21 +10,105 @@ namespace TwoWeekControl.Controls
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class WeekControl : ContentView
     {
-        public DateTime dateSelected;
+        //* Public Properties
+        public DateTime DateSelected;
 
+        //* Private Properties
+        private List<DayViewModel> dataList = new List<DayViewModel>();
 
-        public List<DayViewModel> dataList = new List<DayViewModel>();
-
-
+        //* Constructors
         public WeekControl()
         {
             InitializeComponent();
 
             setUpDateElements();
-            //SetDataList();  //fills up the data list with data, 
-                            //  the list needs to be full for fillDatesWithToday() to work
+            fillDatesWithToday();
+        }
 
-            FillDatesWithToday();
+        // TODO: Put a little marker on today.
+        //       Put in a color option. :)
+
+        //* Private Methods
+        private void changeBindingDate(int i, DateTime date)
+        {
+            dataList[i].Date = date;
+
+            if (date < DateTime.Today)
+                dataList[i].NumOpacity = 0.6;
+            else
+                dataList[i].NumOpacity = 1;
+
+            if (date == DateSelected)
+                selectDay(i);
+            else
+                dataList[i].CircleOpacity = 0;
+        }
+
+        private void changeMonthYearBinding(int n)
+        {
+            MonthLabel.BindingContext = dataList[n];
+            YearLabel.BindingContext = dataList[n];
+        }
+
+        private void circleDate(int n)
+        {
+            for (int i = 0; i < dataList.Count; i++)
+            {
+                if (i != n)
+                    dataList[i].CircleOpacity = 0;
+            }
+            dataList[n].CircleOpacity = 1;
+        }
+
+        /// <summary>
+        /// Populates the calendar with the week of today and selects today.
+        /// </summary>
+        private void fillDatesWithToday()
+        {
+            DateTime today = DateTime.Now;
+
+            // 0 is Sunday ... 6 is Saturday
+            int todayOfWeek = (int)today.DayOfWeek;
+
+            changeBindingDate(todayOfWeek, today);
+
+            DateTime temp = today.AddDays(1);
+
+            // Populates days after today
+            for (int i = todayOfWeek + 1; i < dataList.Count; i++)
+            {
+                changeBindingDate(i, temp);
+                temp = temp.AddDays(1);
+            }
+
+            temp = today;
+
+            // Populates days before today
+            for (int i = todayOfWeek - 1; i >= 0; i--)
+            {
+                temp = temp.AddDays(-1);
+                changeBindingDate(i, temp);
+            }
+
+            selectDay(todayOfWeek);
+        }
+
+        private void selectDay(int n)
+        {
+            changeMonthYearBinding(n);
+            circleDate(n);
+            setDateSelected(n);
+        }
+
+        private void setDateSelected(int n)
+        {
+            int year = dataList[n].Date.Year;
+            string month = dataList[n].Month;
+            int day = dataList[n].Date.Day;
+
+            string concat = string.Format("{0}-{1}-{2}", year, month, day);
+
+            DateTime.TryParseExact(concat, "yyyy-MMMM-d", null, DateTimeStyles.None, out DateSelected);
         }
 
         private void setUpDateElements()
@@ -78,155 +162,45 @@ namespace TwoWeekControl.Controls
             }
         }
 
-        public void SetDateSelected(int n)
+        public void ShiftDatesBackward()
         {
-            string year = dataList[n].Date.Year.ToString();
-            string month = dataList[n].Month;
-            string day = dataList[n].Date.Day.ToString();
+            DateTime firstDate = DateTime.Today;
 
-            string sum = year + "-" + month + "-" + day;
+            int year = dataList[0].Date.Year;
+            string month = dataList[0].Month;
+            int day = dataList[0].Date.Day;
 
-            Debug.WriteLine("Sum " + sum);
-            //If successful parse, this line prints true 
-            Debug.WriteLine("Parse: " + DateTime.TryParseExact(sum, "yyyy-MMMM-d", null, System.Globalization.DateTimeStyles.None, out dateSelected));
-            //If successful parse, this line prints the selected date, if failed, the line prints 1/1/2001
-            Debug.WriteLine("Date selected: " + dateSelected.ToShortDateString());
-        }
+            string concat = string.Format("{0}-{1}-{2}", year, month, day);
 
-        public DateTime GetDateSelected()
-        {
-            return dateSelected;
-        }
+            DateTime.TryParseExact(concat, "yyyy-MMMM-d", null, DateTimeStyles.None, out firstDate);
 
-        //TODO: >put a little marker on today.
-        //      >put in a color option. :)
-
-        //populates the calendar with the week of today and selects today.
-        public void FillDatesWithToday()
-        {
-            DateTime today = DateTime.Now;
-
-            int todayOfWeek = (int)today.DayOfWeek;  //0 is sunday ... 6 is saturday
-
-            ChangeBindingDate(todayOfWeek, today);
-
-            DateTime temp = today.AddDays(1);
-
-            for (int i = todayOfWeek + 1; i < dataList.Count; i++)     //populates days after today
+            for (int i = dataList.Count - 1; i >= 0; i--)
             {
-                ChangeBindingDate(i, temp);
-                temp = temp.AddDays(1);
+                firstDate = firstDate.AddDays(-1);
+                changeBindingDate(i, firstDate);
             }
-
-            temp = today;
-            for (int i = todayOfWeek - 1; i >= 0; i--)       //populates days before today
-            {
-                temp = temp.AddDays(-1);
-                ChangeBindingDate(i, temp);
-            }
-
-            SelectDay(todayOfWeek);
-            //FadeOldDates();
-        }
-
-        private void ChangeBindingDate(int i, DateTime temp)
-        {
-            dataList[i].Date = temp;
-
-            if (temp < DateTime.Today)
-            {
-                dataList[i].NumOpacity = 0.6;
-            }
-            else
-            {
-                dataList[i].NumOpacity = 1;
-            }
-
-            if (temp == dateSelected)
-            {
-                SelectDay(i);
-            }
-            else
-            {
-                dataList[i].CircleOpacity = 0;
-            }
-        }
-
-
-        private void FadeOldDates()
-        {
-            int todayOfWeek = (int)DateTime.Now.DayOfWeek;
-
-            for (int i = todayOfWeek - 1; i >= 0; i--)
-            {
-                dataList[i].NumOpacity = 0.6;
-            }
-        }
-
-        private void CircleDate(int n)
-        {
-            for (int i = 0; i < dataList.Count; i++)
-            {
-                if (i != n)
-                {
-                    dataList[i].CircleOpacity = 0;
-                }
-            }
-            dataList[n].CircleOpacity = 1;
-        }
-
-        private void ChangeMonthYearBinding(int n)
-        {
-            MonthLabel.BindingContext = dataList[n];
-            YearLabel.BindingContext = dataList[n];
-            //Debug.WriteLine("Changed month and year binding for box: " + n);
-        }
-
-        public void SelectDay(int n)
-        {
-            ChangeMonthYearBinding(n);
-            CircleDate(n);
-            SetDateSelected(n);
         }
 
         public void ShiftDatesForward()
         {
             DateTime lastDate = DateTime.Today;
-            string day = dataList[dataList.Count - 1].Date.Day.ToString();
-            string month = dataList[dataList.Count - 1].Month;
-            string year = dataList[dataList.Count - 1].Date.Year.ToString();
-            string sum = year + "-" + month + "-" + day;
 
-            Debug.WriteLine("Parse: " + DateTime.TryParseExact(sum, "yyyy-MMMM-d", null, System.Globalization.DateTimeStyles.None, out lastDate));
+            int year = dataList[dataList.Count - 1].Date.Year;
+            string month = dataList[dataList.Count - 1].Month;
+            int day = dataList[dataList.Count - 1].Date.Day;
+
+            string concat = string.Format("{0}-{1}-{2}", year, month, day);
+
+            DateTime.TryParseExact(concat, "yyyy-MMMM-d", null, DateTimeStyles.None, out lastDate);
 
             for (int i = 0; i < dataList.Count; i++)
             {
                 lastDate = lastDate.AddDays(1);
-                ChangeBindingDate(i, lastDate);
-                Debug.WriteLine(lastDate.Date);
+                changeBindingDate(i, lastDate);
             }
         }
 
-        public void ShiftDatesBackward()
-        {
-            DateTime firstDate = DateTime.Today;
-            string day = dataList[0].Date.Day.ToString();
-            string month = dataList[0].Month;
-            string year = dataList[0].Date.Year.ToString();
-            string sum = year + "-" + month + "-" + day;
-
-            Debug.WriteLine("Parse: " + DateTime.TryParseExact(sum, "yyyy-MMMM-d", null, System.Globalization.DateTimeStyles.None, out firstDate));
-
-            for (int i = dataList.Count - 1; i >= 0; i--)
-            {
-                firstDate = firstDate.AddDays(-1);
-                ChangeBindingDate(i, firstDate);
-                Debug.WriteLine(firstDate.Date);
-            }
-        }
-
-
-        //Event Handlers:
+        //* Event Handlers
 
         private void DateButton_Clicked(object sender, EventArgs e)
         {
@@ -234,18 +208,17 @@ namespace TwoWeekControl.Controls
             int column = (int) button.GetValue(Grid.ColumnProperty);
             int row = (int)button.GetValue(Grid.RowProperty);
 
-            SelectDay((row - 2) * 7 + column);
-        }
-
-        //This is for the "+" button in the top left
-        private void PlusButton_Clicked(object sender, EventArgs e)
-        {
-            //todo: link this with the controller class 
+            selectDay((row - 2) * 7 + column);
         }
 
         private void LeftArrowButton_Clicked(object sender, EventArgs e)
         {
             ShiftDatesBackward();
+        }
+
+        private void PlusButton_Clicked(object sender, EventArgs e)
+        {
+            // TODO: Link this with the Controller class 
         }
 
         private void RightArrowButton_Clicked(object sender, EventArgs e)
