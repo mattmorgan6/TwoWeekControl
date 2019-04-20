@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
+using System.ComponentModel;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -8,13 +8,36 @@ using Xamarin.Forms.Xaml;
 namespace TwoWeekControl.Controls
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class WeekControl : ContentView
+    public partial class WeekControl : ContentView, INotifyPropertyChanged
     {
-        //* Public Properties
-        public DateTime DateSelected;
-
         //* Private Properties
+        private DateTime dateSelected;
+
         private List<DayViewModel> dataList = new List<DayViewModel>();
+
+        //* Public Properties
+        public DateTime DateSelected
+        {
+            get => dateSelected;
+            private set
+            {
+                if (value != dateSelected)
+                {
+                    dateSelected = value;
+                    OnNotifyPropertyChanged(nameof(DateSelected));
+                    OnNotifyPropertyChanged(nameof(DateFormatted));
+                }
+            }
+        }
+
+        /// <summary>
+        /// This sets the Title to the ListView with the DateSelected
+        /// </summary>
+        public string DateFormatted => DateSelected.ToString("dddd, MMMM dd");
+
+        //* Public Events
+        public event EventHandler DataSelectedChanged;
+        public event PropertyChangedEventHandler PropertyChanged;
 
         //* Constructors
         public WeekControl()
@@ -25,8 +48,30 @@ namespace TwoWeekControl.Controls
             fillDatesWithToday();
         }
 
+        //* Public Methods
+        public void ShiftDatesBackward()
+        {
+            DateTime firstDate = dataList[0].Date;
+
+            for (int i = dataList.Count - 1; i >= 0; i--)
+            {
+                firstDate = firstDate.AddDays(-1);
+                changeBindingDate(i, firstDate);
+            }
+        }
+
+        public void ShiftDatesForward()
+        {
+            DateTime lastDate = dataList[dataList.Count - 1].Date;
+
+            for (int i = 0; i < dataList.Count; i++)
+            {
+                lastDate = lastDate.AddDays(1);
+                changeBindingDate(i, lastDate);
+            }
+        }
+
         // TODO: Put a little marker on today.
-        //       Put in a color option. :)
 
         //* Private Methods
         private void changeBindingDate(int i, DateTime date)
@@ -93,22 +138,18 @@ namespace TwoWeekControl.Controls
             selectDay(todayOfWeek);
         }
 
+        /// <summary>
+        /// Updates the ViewModel bindings with new data.
+        /// </summary>
+        /// <param name="n">
+        /// The index of the date on the calendar (0 is the first date, 13 is the last date)
+        /// </param>
         private void selectDay(int n)
         {
             changeMonthYearBinding(n);
             circleDate(n);
-            setDateSelected(n);
-        }
 
-        private void setDateSelected(int n)
-        {
-            int year = dataList[n].Date.Year;
-            string month = dataList[n].Month;
-            int day = dataList[n].Date.Day;
-
-            string concat = string.Format("{0}-{1}-{2}", year, month, day);
-
-            DateTime.TryParseExact(concat, "yyyy-MMMM-d", null, DateTimeStyles.None, out DateSelected);
+            DateSelected = dataList[n].Date;
         }
 
         private void setUpDateElements()
@@ -126,9 +167,8 @@ namespace TwoWeekControl.Controls
                     {
                         YearLabel.BindingContext = dataList[0];
                         MonthLabel.BindingContext = dataList[0];
-                        LeftArrowButton.BindingContext = dataList[0];
-                        RightArrowButton.BindingContext = dataList[0];
-                        PlusButton.BindingContext = dataList[0];
+                        LeftArrowImageButton.BindingContext = dataList[0];
+                        RightArrowImageButton.BindingContext = dataList[0];
                     }
 
                     // Label for the date number
@@ -136,11 +176,16 @@ namespace TwoWeekControl.Controls
                     tempLabel.SetValue(Grid.RowProperty, i + 2);
                     tempLabel.SetValue(Grid.ColumnProperty, j);
                     tempLabel.HorizontalOptions = LayoutOptions.Center;
+                    tempLabel.VerticalOptions = LayoutOptions.Center;
 
                     tempLabel.BindingContext = dataList[i * 7 + j];
-                    tempLabel.SetBinding(Label.TextProperty, new Binding("Date.Day"));
-                    tempLabel.SetBinding(Label.TextColorProperty, new Binding("ColorTheme"));
-                    tempLabel.SetBinding(OpacityProperty, new Binding("NumOpacity"));
+                    tempLabel.SetBinding(Label.TextProperty, new Binding(
+                        string.Format("{0}.{1}", nameof(DayViewModel.Date),
+                            nameof(DayViewModel.Date.Day))));
+                    tempLabel.SetBinding(Label.TextColorProperty, new Binding(
+                        nameof(DayViewModel.ColorTheme)));
+                    tempLabel.SetBinding(OpacityProperty, new Binding(
+                        nameof(DayViewModel.NumOpacity)));
 
                     MainGrid.Children.Add(tempLabel);
 
@@ -148,82 +193,50 @@ namespace TwoWeekControl.Controls
                     Button tempButton = new Button();
                     tempButton.SetValue(Grid.RowProperty, i + 2);
                     tempButton.SetValue(Grid.ColumnProperty, j);
+                    tempButton.VerticalOptions = LayoutOptions.Center;
+                    tempButton.HorizontalOptions = LayoutOptions.Center;
+                    tempButton.HeightRequest = 30;
+                    tempButton.WidthRequest = 30;
                     tempButton.BackgroundColor = Color.Transparent;
-                    tempButton.CornerRadius = 10;
                     tempButton.BorderWidth = 1;
+                    tempButton.CornerRadius = 15;
                     tempButton.Clicked += DateButton_Clicked;
 
                     tempButton.BindingContext = dataList[i * 7 + j];
-                    tempButton.SetBinding(Button.BorderColorProperty, new Binding("ColorTheme"));
-                    tempButton.SetBinding(OpacityProperty, new Binding("CircleOpacity"));
+                    tempButton.SetBinding(Button.BorderColorProperty, new Binding(
+                        nameof(DayViewModel.ColorTheme)));
+                    tempButton.SetBinding(OpacityProperty, new Binding(
+                        nameof(DayViewModel.CircleOpacity)));
 
                     MainGrid.Children.Add(tempButton);
                 }
             }
         }
 
-        public void ShiftDatesBackward()
-        {
-            DateTime firstDate = DateTime.Today;
-
-            int year = dataList[0].Date.Year;
-            string month = dataList[0].Month;
-            int day = dataList[0].Date.Day;
-
-            string concat = string.Format("{0}-{1}-{2}", year, month, day);
-
-            DateTime.TryParseExact(concat, "yyyy-MMMM-d", null, DateTimeStyles.None, out firstDate);
-
-            for (int i = dataList.Count - 1; i >= 0; i--)
-            {
-                firstDate = firstDate.AddDays(-1);
-                changeBindingDate(i, firstDate);
-            }
-        }
-
-        public void ShiftDatesForward()
-        {
-            DateTime lastDate = DateTime.Today;
-
-            int year = dataList[dataList.Count - 1].Date.Year;
-            string month = dataList[dataList.Count - 1].Month;
-            int day = dataList[dataList.Count - 1].Date.Day;
-
-            string concat = string.Format("{0}-{1}-{2}", year, month, day);
-
-            DateTime.TryParseExact(concat, "yyyy-MMMM-d", null, DateTimeStyles.None, out lastDate);
-
-            for (int i = 0; i < dataList.Count; i++)
-            {
-                lastDate = lastDate.AddDays(1);
-                changeBindingDate(i, lastDate);
-            }
-        }
-
         //* Event Handlers
 
+        /// <summary>
+        /// Handles the event when any of the numbered dates is pressed.
+        /// </summary>
         private void DateButton_Clicked(object sender, EventArgs e)
         {
             Button button = sender as Button;
-            int column = (int) button.GetValue(Grid.ColumnProperty);
+            int column = (int)button.GetValue(Grid.ColumnProperty);
             int row = (int)button.GetValue(Grid.RowProperty);
 
             selectDay((row - 2) * 7 + column);
+
+            // Raise the event
+            DataSelectedChanged?.Invoke(this, e);
         }
 
-        private void LeftArrowButton_Clicked(object sender, EventArgs e)
-        {
+        private void LeftArrowImageButton_Clicked(object sender, EventArgs e) =>
             ShiftDatesBackward();
-        }
 
-        private void PlusButton_Clicked(object sender, EventArgs e)
-        {
-            // TODO: Link this with the Controller class 
-        }
+        public void OnNotifyPropertyChanged(string property) =>
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(property));
 
-        private void RightArrowButton_Clicked(object sender, EventArgs e)
-        {
+        private void RightArrowImageButton_Clicked(object sender, EventArgs e) =>
             ShiftDatesForward();
-        }
     }
 }
