@@ -9,8 +9,8 @@
         <Frame Margin="0,50,0,0" 
                HorizontalOptions="Center" 
                VerticalOptions="Start" 
-               OutlineColor="Black">
-            <control:WeekControl />
+               OutlineColor="White">
+            <control:WeekControl ShowDayName="False"/>
         </Frame>
     </StackLayout>
 

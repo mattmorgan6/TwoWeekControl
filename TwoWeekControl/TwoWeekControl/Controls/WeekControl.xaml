@@ -2,6 +2,41 @@
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TwoWeekControl.Controls.WeekControl">
+
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <Style x:Key="DateLabelStyle"
+                   TargetType="Label">
+                <Setter Property="HorizontalOptions"
+                        Value="Center" />
+
+                <Setter Property="VerticalOptions"
+                        Value="EndAndExpand" />
+
+                <Setter Property="Margin"
+                        Value="0,5,0,5" />
+
+                <Setter Property="FontSize"
+                        Value="12" />
+
+                <Setter Property="TextColor"
+                        Value="White" />
+            </Style>
+
+            <Style x:Key="NavigationImageButtonStyle"
+                   TargetType="ImageButton">
+                <Setter Property="HorizontalOptions"
+                        Value="Center" />
+
+                <Setter Property="WidthRequest"
+                        Value="24" />
+
+                <Setter Property="BackgroundColor"
+                        Value="Transparent" />
+            </Style>
+        </ResourceDictionary>
+    </ContentView.Resources>
+    
     <ContentView.Content>
 
         <!-- This grid defines the layout of evreything within the calendar -->
@@ -9,6 +44,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="24" />
                 <RowDefinition Height="24" />
+                <RowDefinition Height="Auto" />
                 <RowDefinition Height="30" />
                 <RowDefinition Height="30" />
             </Grid.RowDefinitions>
@@ -41,49 +77,16 @@
             <!-- These buttons are the left and right arrows that make the calendar go
                  forward and backward in time -->
             <ImageButton x:Name="LeftArrowImageButton"
+                         Style="{StaticResource NavigationImageButtonStyle}"
                          Grid.Column="5"
-                         HorizontalOptions="Center"
-                         WidthRequest="24"
                          Source="leftArrow.png"
-                         BackgroundColor="Transparent"
                          Clicked="LeftArrowImageButton_Clicked" />
 
             <ImageButton x:Name="RightArrowImageButton"
+                         Style="{StaticResource NavigationImageButtonStyle}"
                          Grid.Column="6"
-                         HorizontalOptions="Center"
-                         WidthRequest="24"
                          Source="rightArrow.png"
-                         BackgroundColor="Transparent"
                          Clicked="RightArrowImageButton_Clicked" />
-
-            <!-- If you want to have day of the week labels
-            <Label Grid.Row="2"
-                   Text="SUN"
-                   FontSize="8" />
-            <Label Grid.Row="2"
-                   Grid.Column="1"
-                   Text="MON"
-                   FontSize="8" />
-            <Label Grid.Row="2"
-                   Grid.Column="2"
-                   Text="TUE"
-                   FontSize="8" />
-            <Label Grid.Row="2"
-                   Grid.Column="3"
-                   Text="WED"
-                   FontSize="8" />
-            <Label Grid.Row="2"
-                   Grid.Column="4"
-                   Text="THS"
-                   FontSize="8" />
-            <Label Grid.Row="2"
-                   Grid.Column="5"
-                   Text="FRI"
-                   FontSize="8" />
-            <Label Grid.Row="2"
-                   Grid.Column="6"
-                   Text="SAT"
-                   FontSize="8" /> -->
         </Grid>
       
     </ContentView.Content>

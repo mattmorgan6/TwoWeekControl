@@ -10,12 +10,36 @@ namespace TwoWeekControl.Controls
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class WeekControl : ContentView, INotifyPropertyChanged
     {
+        //* Static Properties
+        public static readonly BindableProperty ShowDayNameProperty = BindableProperty.Create(
+            propertyName: nameof(ShowDayName),
+            returnType: typeof(bool),
+            declaringType: typeof(WeekControl),
+            defaultValue: false,
+            defaultBindingMode: BindingMode.TwoWay,
+            propertyChanged: ShowDayNameProperty_Changed);
+
         //* Private Properties
+        private bool showDayName = false;
+
         private DateTime dateSelected;
 
         private List<DayViewModel> dataList = new List<DayViewModel>();
 
         //* Public Properties
+        public bool ShowDayName
+        {
+            get => showDayName;
+            set
+            {
+                if (value != showDayName)
+                {
+                    showDayName = value;
+                    OnNotifyPropertyChanged(nameof(ShowDayName));
+                }
+            }
+        }
+
         public DateTime DateSelected
         {
             get => dateSelected;
@@ -46,6 +70,8 @@ namespace TwoWeekControl.Controls
 
             setUpDateElements();
             fillDatesWithToday();
+
+            setUpDateLabels();
         }
 
         //* Public Methods
@@ -173,7 +199,7 @@ namespace TwoWeekControl.Controls
 
                     // Label for the date number
                     Label tempLabel = new Label();
-                    tempLabel.SetValue(Grid.RowProperty, i + 2);
+                    tempLabel.SetValue(Grid.RowProperty, i + 3);
                     tempLabel.SetValue(Grid.ColumnProperty, j);
                     tempLabel.HorizontalOptions = LayoutOptions.Center;
                     tempLabel.VerticalOptions = LayoutOptions.Center;
@@ -191,7 +217,7 @@ namespace TwoWeekControl.Controls
 
                     // Button behind the Label for the touch event when the number is clicked
                     Button tempButton = new Button();
-                    tempButton.SetValue(Grid.RowProperty, i + 2);
+                    tempButton.SetValue(Grid.RowProperty, i + 3);
                     tempButton.SetValue(Grid.ColumnProperty, j);
                     tempButton.VerticalOptions = LayoutOptions.Center;
                     tempButton.HorizontalOptions = LayoutOptions.Center;
@@ -213,7 +239,32 @@ namespace TwoWeekControl.Controls
             }
         }
 
+        private void setUpDateLabels()
+        {
+            // Date chosen as 1 corresponds to Sunday
+            for (DateTime d = new DateTime(2018, 7, 1); d.Day < 8; d = d.AddDays(1))
+            {
+                Label tempLabel = new Label();
+                tempLabel.SetValue(Grid.RowProperty, 2);
+                tempLabel.SetValue(Grid.ColumnProperty, d.Day - 1);
+                tempLabel.Style = Resources["DateLabelStyle"] as Style;
+                tempLabel.Text = d.ToString("ddd").ToUpper();
+
+                tempLabel.BindingContext = this;
+                tempLabel.SetBinding(IsVisibleProperty, new Binding(
+                    nameof(ShowDayName)));
+
+                MainGrid.Children.Add(tempLabel);
+            }
+        }
+
         //* Event Handlers
+        private static void ShowDayNameProperty_Changed(BindableObject bindable, object oldValue,
+            object newValue)
+        {
+            WeekControl control = (WeekControl) bindable;
+            control.ShowDayName = (bool) newValue;
+        }
 
         /// <summary>
         /// Handles the event when any of the numbered dates is pressed.
@@ -224,7 +275,7 @@ namespace TwoWeekControl.Controls
             int column = (int)button.GetValue(Grid.ColumnProperty);
             int row = (int)button.GetValue(Grid.RowProperty);
 
-            selectDay((row - 2) * 7 + column);
+            selectDay((row - 3) * 7 + column);
 
             // Raise the event
             DataSelectedChanged?.Invoke(this, e);
