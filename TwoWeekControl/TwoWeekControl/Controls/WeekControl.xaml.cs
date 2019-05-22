@@ -239,6 +239,9 @@ namespace TwoWeekControl.Controls
             }
         }
 
+        /// <summary>
+        /// The SUN - SAT Labels
+        /// </summary>
         private void setUpDateLabels()
         {
             // Date chosen as 1 corresponds to Sunday

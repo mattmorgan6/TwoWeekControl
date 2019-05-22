@@ -5,7 +5,7 @@
              xmlns:control="clr-namespace:TwoWeekControl.Controls"
              x:Class="TwoWeekControl.MainPage">
 
-    <StackLayout BackgroundColor="DarkBlue">
+    <StackLayout BackgroundColor="#154360">
         <Frame Margin="0,50,0,0" 
                HorizontalOptions="Center" 
                VerticalOptions="Start" 
