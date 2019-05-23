@@ -44,7 +44,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="24" />
                 <RowDefinition Height="24" />
-                <RowDefinition Height="Auto" />
+                <RowDefinition Height="30" />
                 <RowDefinition Height="30" />
                 <RowDefinition Height="30" />
             </Grid.RowDefinitions>
@@ -79,12 +79,16 @@
             <ImageButton x:Name="LeftArrowImageButton"
                          Style="{StaticResource NavigationImageButtonStyle}"
                          Grid.Column="5"
+                         Grid.RowSpan="2"
                          Source="leftArrow.png"
+                         VerticalOptions="Center"
                          Clicked="LeftArrowImageButton_Clicked" />
 
             <ImageButton x:Name="RightArrowImageButton"
                          Style="{StaticResource NavigationImageButtonStyle}"
                          Grid.Column="6"
+                         Grid.RowSpan="2"
+                         VerticalOptions="Center"
                          Source="rightArrow.png"
                          Clicked="RightArrowImageButton_Clicked" />
         </Grid>
