@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -19,6 +20,7 @@ namespace TwoWeekControl.Controls
             propertyChanged: ShowDayNameProperty_Changed);
 
         //* Private Properties
+
         /// <summary>
         /// Determines whether the SUN-SAT labels appear above the calendar days.
         /// </summary>
@@ -108,19 +110,6 @@ namespace TwoWeekControl.Controls
         // TODO: Put a little marker on today.
 
         //* Private Methods
-        /// <summary>
-        /// Updates the DayViewModel bindings with new data.
-        /// </summary>
-        /// <param name="n">
-        /// The index of the date on the calendar (0 is the first date, 13 is the last date)
-        /// </param>
-        private void selectDay(int n)
-        {
-            changeMonthYearBinding(n);
-            circleDate(n);
-
-            DateSelected = dataList[n].Date;
-        }
 
         private void changeBindingDate(int i, DateTime date)
         {
@@ -151,6 +140,53 @@ namespace TwoWeekControl.Controls
                     dataList[i].CircleOpacity = 0;
             }
             dataList[n].CircleOpacity = 1;
+        }
+
+        /// <summary>
+        /// Populates the calendar with the week of today and selects today.
+        /// </summary>
+        private void fillDatesWithToday()
+        {
+            DateTime today = DateTime.Now;
+
+            // 0 is Sunday ... 6 is Saturday
+            int todayOfWeek = (int) today.DayOfWeek;
+
+            changeBindingDate(todayOfWeek, today);
+
+            DateTime temp = today.AddDays(1);
+
+            // Populates days after today
+            for (int i = todayOfWeek + 1; i < dataList.Count; i++)
+            {
+                changeBindingDate(i, temp);
+                temp = temp.AddDays(1);
+            }
+
+            temp = today;
+
+            // Populates days before today
+            for (int i = todayOfWeek - 1; i >= 0; i--)
+            {
+                temp = temp.AddDays(-1);
+                changeBindingDate(i, temp);
+            }
+
+            selectDay(todayOfWeek);
+        }
+
+        /// <summary>
+        /// Updates the DayViewModel bindings with new data.
+        /// </summary>
+        /// <param name="n">
+        /// The index of the date on the calendar (0 is the first date, 13 is the last date)
+        /// </param>
+        private void selectDay(int n)
+        {
+            changeMonthYearBinding(n);
+            circleDate(n);
+
+            DateSelected = dataList[n].Date;
         }
 
         /// <summary>
@@ -199,6 +235,7 @@ namespace TwoWeekControl.Controls
                     tempButton.SetValue(Grid.ColumnProperty, j);
                     tempButton.VerticalOptions = LayoutOptions.Center;
                     tempButton.HorizontalOptions = LayoutOptions.Center;
+                    tempButton.Margin = new Thickness(-1, 0, 0, 0);
                     tempButton.HeightRequest = 30;
                     tempButton.WidthRequest = 30;
                     tempButton.BackgroundColor = Color.Transparent;
@@ -215,39 +252,6 @@ namespace TwoWeekControl.Controls
                     MainGrid.Children.Add(tempButton);
                 }
             }
-        }
-
-        /// <summary>
-        /// Populates the calendar with the week of today and selects today.
-        /// </summary>
-        private void fillDatesWithToday()
-        {
-            DateTime today = DateTime.Now;
-
-            // 0 is Sunday ... 6 is Saturday
-            int todayOfWeek = (int)today.DayOfWeek;
-
-            changeBindingDate(todayOfWeek, today);
-
-            DateTime temp = today.AddDays(1);
-
-            // Populates days after today
-            for (int i = todayOfWeek + 1; i < dataList.Count; i++)
-            {
-                changeBindingDate(i, temp);
-                temp = temp.AddDays(1);
-            }
-
-            temp = today;
-
-            // Populates days before today
-            for (int i = todayOfWeek - 1; i >= 0; i--)
-            {
-                temp = temp.AddDays(-1);
-                changeBindingDate(i, temp);
-            }
-
-            selectDay(todayOfWeek);
         }
 
         /// <summary>
@@ -268,8 +272,6 @@ namespace TwoWeekControl.Controls
                 tempLabel.SetBinding(IsVisibleProperty, new Binding(
                     nameof(ShowDayName)));
 
-                //tempLabel.IsVisible = true;                 //todo: edit this so that it is visible when visible :)
-
                 MainGrid.Children.Add(tempLabel);
             }
         }
@@ -288,8 +290,8 @@ namespace TwoWeekControl.Controls
         private void DateButton_Clicked(object sender, EventArgs e)
         {
             Button button = sender as Button;
-            int column = (int)button.GetValue(Grid.ColumnProperty);
-            int row = (int)button.GetValue(Grid.RowProperty);
+            int column = (int) button.GetValue(Grid.ColumnProperty);
+            int row = (int) button.GetValue(Grid.RowProperty);
 
             selectDay((row - 3) * 7 + column);
 
@@ -300,10 +302,8 @@ namespace TwoWeekControl.Controls
         private void LeftArrowImageButton_Clicked(object sender, EventArgs e) =>
             ShiftDatesBackward();
 
-        public void OnNotifyPropertyChanged(string property)
-        {
+        public void OnNotifyPropertyChanged(string property) => 
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(property));
-        }
 
         private void RightArrowImageButton_Clicked(object sender, EventArgs e) =>
             ShiftDatesForward();

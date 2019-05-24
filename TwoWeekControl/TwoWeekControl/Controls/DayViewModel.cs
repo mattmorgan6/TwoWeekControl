@@ -85,7 +85,7 @@ namespace TwoWeekControl.Controls
             ColorTheme = colorTheme;
         }
 
-        //* Events and Event Handlers
+        //* Event Handlers
         public void OnNotifyPropertyChanged(string property) =>
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(property));
 
