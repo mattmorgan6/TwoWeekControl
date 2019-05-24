@@ -24,7 +24,7 @@ namespace TwoWeekControl.Controls
         /// <summary>
         /// Determines whether the SUN-SAT labels appear above the calendar days.
         /// </summary>
-        private bool showDayName = true;
+        private bool showDayName = false;
 
         /// <summary>
         /// DateTime object of the date selected on the calendar.

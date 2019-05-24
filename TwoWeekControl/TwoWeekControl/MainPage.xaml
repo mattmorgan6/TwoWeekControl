@@ -11,7 +11,7 @@
                VerticalOptions="Start" 
                OutlineColor="White">
             <control:WeekControl x:Name="CalendarWeekControl"
-                                 ShowDayName="False"/>
+                                 ShowDayName="True"/>
         </Frame>
     </StackLayout>
 
