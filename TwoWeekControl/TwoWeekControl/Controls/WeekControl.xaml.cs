@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Diagnostics;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -304,7 +303,6 @@ namespace TwoWeekControl.Controls
         public void OnNotifyPropertyChanged(string property)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(property));
-            Debug.WriteLine("Invoked");
         }
 
         private void RightArrowImageButton_Clicked(object sender, EventArgs e) =>

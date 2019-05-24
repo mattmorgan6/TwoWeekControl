@@ -10,7 +10,8 @@
                HorizontalOptions="Center" 
                VerticalOptions="Start" 
                OutlineColor="White">
-            <control:WeekControl ShowDayName="False"/>
+            <control:WeekControl x:Name="CalendarWeekControl"
+                                 ShowDayName="False"/>
         </Frame>
     </StackLayout>
 
