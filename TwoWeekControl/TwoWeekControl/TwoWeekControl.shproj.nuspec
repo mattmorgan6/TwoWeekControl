@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>TwoWeekControl.shproj</id>
+    <version>1.0.0</version>
+    <authors>mattm</authors>
+    <owners>mattm</owners>
+    <projectUrl>https://github.com/mattmorgan6/TwoWeekControl</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Interactive and modern calendar for Xamarin forms with two weeks shown.</description>
+    <releaseNotes>Release 1.0.0</releaseNotes>
+    <copyright>Copyright 2019</copyright>
+    <tags>Calendar Control Xamarin Forms Xamarin.Forms</tags>
+    <dependencies>
+      <dependency id="SampleDependency" version="1.0" />
+    </dependencies>
+  </metadata>
+</package>
