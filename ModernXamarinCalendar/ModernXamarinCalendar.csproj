@@ -1,7 +1,16 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <Authors>Matt Morgan, Sandeep Singh Sidhu</Authors>
+    <Version>1.0.1</Version>
+    <Company>KMS</Company>
+    <Description>Interactive Xamarin.Forms Calendar</Description>
+    <RepositoryUrl>https://github.com/mattmorgan6/TwoWeekControl</RepositoryUrl>
+    <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
+    <PackageTags>xamarin.forms, calendar, control</PackageTags>
+    <RepositoryType>GitHub</RepositoryType>
+    <PackageReleaseNotes>Fixed the row width for Calendar Days</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
@@ -12,6 +21,20 @@
     <EmbeddedResource Update="WeekControl.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="..\README.md">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\LICENSE.md">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>
