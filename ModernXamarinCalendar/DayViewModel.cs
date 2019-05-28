@@ -3,7 +3,7 @@ using System.ComponentModel;
 
 using Xamarin.Forms;
 
-namespace TwoWeekControl.Controls
+namespace ModernXamarinCalendar
 {
     public class DayViewModel : INotifyPropertyChanged
     {
@@ -35,7 +35,6 @@ namespace TwoWeekControl.Controls
                 modifyProperty(ref value, ref date, nameof(Date));
                 OnNotifyPropertyChanged(nameof(Month));
             }
-               
         }
 
         /// <summary>
@@ -48,9 +47,8 @@ namespace TwoWeekControl.Controls
             set => modifyProperty(ref value, ref circleOpacity, nameof(CircleOpacity));
         }
         ///  <summary>
-        /// The opacity of the month number.Used to make the old dates faded.
+        /// The opacity of the month number. Used to make the old dates faded.
         /// </summary>
-        /// <value></value>
         public double NumOpacity
         {
             get => numOpacity;

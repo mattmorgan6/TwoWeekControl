@@ -147,13 +147,19 @@
     <Reference Include="Xamarin.iOS" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Xamarin.Forms" Version="3.6.0.344457" />
+    <PackageReference Include="Xamarin.Forms" Version="4.0.0.425677" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\leftArrow.png" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\rightArrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\ModernXamarinCalendar\ModernXamarinCalendar.csproj">
+      <Project>{c72fc9b4-7ad9-4a3b-9dd2-3813c597460b}</Project>
+      <Name>ModernXamarinCalendar</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Import Project="..\TwoWeekControl\TwoWeekControl.projitems" Label="Shared" />

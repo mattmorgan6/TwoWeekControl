@@ -1,7 +1,10 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="TwoWeekControl.Controls.WeekControl">
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="ModernXamarinCalendar.WeekControl">
 
     <ContentView.Resources>
         <ResourceDictionary>
@@ -36,7 +39,7 @@
             </Style>
         </ResourceDictionary>
     </ContentView.Resources>
-    
+
     <ContentView.Content>
 
         <!-- This grid defines the layout of evreything within the calendar -->
@@ -48,7 +51,7 @@
                 <RowDefinition Height="30" />
                 <RowDefinition Height="30" />
             </Grid.RowDefinitions>
-            
+
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
@@ -92,6 +95,6 @@
                          Source="rightArrow.png"
                          Clicked="RightArrowImageButton_Clicked" />
         </Grid>
-      
+
     </ContentView.Content>
 </ContentView>

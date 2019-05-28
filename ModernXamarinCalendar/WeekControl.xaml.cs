@@ -5,7 +5,7 @@ using System.ComponentModel;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace TwoWeekControl.Controls
+namespace ModernXamarinCalendar
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class WeekControl : ContentView, INotifyPropertyChanged
@@ -150,7 +150,7 @@ namespace TwoWeekControl.Controls
             DateTime today = DateTime.Now;
 
             // 0 is Sunday ... 6 is Saturday
-            int todayOfWeek = (int) today.DayOfWeek;
+            int todayOfWeek = (int)today.DayOfWeek;
 
             changeBindingDate(todayOfWeek, today);
 
@@ -280,8 +280,8 @@ namespace TwoWeekControl.Controls
         private static void ShowDayNameProperty_Changed(BindableObject bindable, object oldValue,
             object newValue)
         {
-            WeekControl control = (WeekControl) bindable;
-            control.ShowDayName = (bool) newValue;
+            WeekControl control = (WeekControl)bindable;
+            control.ShowDayName = (bool)newValue;
         }
 
         /// <summary>
@@ -290,8 +290,8 @@ namespace TwoWeekControl.Controls
         private void DateButton_Clicked(object sender, EventArgs e)
         {
             Button button = sender as Button;
-            int column = (int) button.GetValue(Grid.ColumnProperty);
-            int row = (int) button.GetValue(Grid.RowProperty);
+            int column = (int)button.GetValue(Grid.ColumnProperty);
+            int row = (int)button.GetValue(Grid.RowProperty);
 
             selectDay((row - 3) * 7 + column);
 
@@ -302,7 +302,7 @@ namespace TwoWeekControl.Controls
         private void LeftArrowImageButton_Clicked(object sender, EventArgs e) =>
             ShiftDatesBackward();
 
-        public void OnNotifyPropertyChanged(string property) => 
+        public void OnNotifyPropertyChanged(string property) =>
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(property));
 
         private void RightArrowImageButton_Clicked(object sender, EventArgs e) =>
