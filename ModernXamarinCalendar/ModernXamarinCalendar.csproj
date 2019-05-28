@@ -2,15 +2,17 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <Authors>Matt Morgan, Sandeep Singh Sidhu</Authors>
+    <Authors>Matt Morgan and Sandeep Singh Sidhu</Authors>
     <Version>1.0.1</Version>
-    <Company>KMS</Company>
-    <Description>Interactive Xamarin.Forms Calendar</Description>
+    <Company></Company>
+    <Description>Modern Xamarin.Forms Calendar that is both interactive and also fits well with only two weeks showing.</Description>
     <RepositoryUrl>https://github.com/mattmorgan6/TwoWeekControl</RepositoryUrl>
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
-    <PackageTags>xamarin.forms, calendar, control</PackageTags>
+    <PackageTags>Xamarin Forms Xamarin.Forms Calendar Date Modern Flat UI</PackageTags>
     <RepositoryType>GitHub</RepositoryType>
     <PackageReleaseNotes>Fixed the row width for Calendar Days</PackageReleaseNotes>
+    <Copyright>2019</Copyright>
+    <PackageProjectUrl>https://github.com/mattmorgan6/TwoWeekControl</PackageProjectUrl>
   </PropertyGroup>
 
   <ItemGroup>
