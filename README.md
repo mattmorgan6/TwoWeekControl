@@ -43,10 +43,12 @@ A Nuget Package for Xamarin Forms. Interactive Xamarin Forms Calendar
         
 #### Step 5
   In the same c# file, write within the constructor
- ```   CalendarWeekControl.DataSelectedChanged += DateSelectedChanged;   ```
+ ```   
+ CalendarWeekControl.DataSelectedChanged += DateSelectedChanged;   
+ ```
  
 #### Step 6
-    Download images from 
+Download Images from 
 >[GitHub - Images - Download this folder for icons for the nuget package](https://github.com/mattmorgan6/ModernXamarinCalendar/tree/master/Images%20-Download%20this%20folder%20for%20icons%20for%20nuget%20package)
 
 and install them in your project
