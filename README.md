@@ -83,3 +83,5 @@ or in the c# code:
 CalendarWeekControl.ShowDayName = true;
 ```
 
+
+(Set the values to false to hide the labels).
