@@ -87,3 +87,6 @@ CalendarWeekControl.ShowDayName = true;
 
 (The default value for `ShowDayName` is false, so not specifying it means the
 days will not show up).
+
+## Notes
+The font for the calendar is white, meaning that the calendar must be placed on a somewhat dark background in order to be visible.
