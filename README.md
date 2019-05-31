@@ -56,7 +56,7 @@ public void DateSelectedChanged(object sender, EventArgs e)
 
 #### Step 5
 
-In the same c# file, write within the constructor
+In the same C# file, write within the constructor
 
 ``` csharp
 CalendarWeekControl.DataSelectedChanged += DateSelectedChanged;
@@ -70,18 +70,20 @@ Download Images from
 and install them in your project
 
 ## Options
-### Show labels for the days of the week (SUN MON TUE WED THU FRI SAT)
 
-In the xaml page:
-```xml
+### Show labels for the days of the week (**SUN MON TUE WED THU FRI SAT**)
+
+In the XAML page, set this property for the `WeekControl`:
+
+``` xml
 ShowDayName="True"
 ```
 
-or in the c# code:
+or in the C# code:
 
 ``` csharp
 CalendarWeekControl.ShowDayName = true;
 ```
 
-
-(Set the values to false to hide the labels).
+(The default value for `ShowDayName` is false, so not specifying it means the
+days will not show up).

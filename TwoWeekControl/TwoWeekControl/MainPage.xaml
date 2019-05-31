@@ -5,9 +5,9 @@
              x:Class="TwoWeekControl.MainPage">
 
     <StackLayout BackgroundColor="#154360">
-        <Frame Margin="0,50,0,0" 
-               HorizontalOptions="Center" 
-               VerticalOptions="Start" 
+        <Frame Margin="0,50,0,0"
+               HorizontalOptions="Center"
+               VerticalOptions="Start"
                OutlineColor="White">
             <control:WeekControl x:Name="CalendarWeekControl"
                                  ShowDayName="True" />
