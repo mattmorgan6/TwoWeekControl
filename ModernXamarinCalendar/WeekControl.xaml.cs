@@ -71,7 +71,7 @@ namespace ModernXamarinCalendar
 
         //* Public Events
         public event EventHandler DataSelectedChanged;
-        public event PropertyChangedEventHandler PropertyChanged;
+        public new event PropertyChangedEventHandler PropertyChanged;
 
         //* Constructors
         public WeekControl()

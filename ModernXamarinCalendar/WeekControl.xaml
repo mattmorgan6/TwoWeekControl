@@ -1,48 +1,40 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView x:Class="ModernXamarinCalendar.WeekControl"
+             xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d"
-             x:Class="ModernXamarinCalendar.WeekControl">
+             mc:Ignorable="d">
 
     <ContentView.Resources>
         <ResourceDictionary>
             <Style x:Key="DateLabelStyle"
                    TargetType="Label">
-                <Setter Property="HorizontalOptions"
-                        Value="Center" />
+                <Setter Property="HorizontalOptions" Value="Center" />
 
-                <Setter Property="VerticalOptions"
-                        Value="EndAndExpand" />
+                <Setter Property="VerticalOptions" Value="EndAndExpand" />
 
-                <Setter Property="Margin"
-                        Value="0,5,0,5" />
+                <Setter Property="Margin" Value="0,5,0,5" />
 
-                <Setter Property="FontSize"
-                        Value="12" />
+                <Setter Property="FontSize" Value="12" />
 
-                <Setter Property="TextColor"
-                        Value="White" />
+                <Setter Property="TextColor" Value="White" />
             </Style>
 
             <Style x:Key="NavigationImageButtonStyle"
                    TargetType="ImageButton">
-                <Setter Property="HorizontalOptions"
-                        Value="Center" />
+                <Setter Property="HorizontalOptions" Value="Center" />
 
-                <Setter Property="WidthRequest"
-                        Value="24" />
+                <Setter Property="WidthRequest" Value="24" />
 
-                <Setter Property="BackgroundColor"
-                        Value="Transparent" />
+                <Setter Property="BackgroundColor" Value="Transparent" />
             </Style>
         </ResourceDictionary>
     </ContentView.Resources>
 
     <ContentView.Content>
 
-        <!-- This grid defines the layout of evreything within the calendar -->
+        <!--  This grid defines the layout of everything within the calendar  -->
         <Grid x:Name="MainGrid">
             <Grid.RowDefinitions>
                 <RowDefinition Height="24" />
@@ -62,38 +54,40 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <!-- Year and Month Labels -->
+            <!--  Year and Month Labels  -->
             <Label x:Name="YearLabel"
                    Grid.ColumnSpan="2"
                    Margin="15,0,0,0"
                    Text="{Binding Date.Year}"
-                   TextColor="White"
-                   FontSize="Small" />
+                   FontSize="Small"
+                   TextColor="White" />
+
+            <!--
+                These buttons are the left and right arrows that make the calendar go
+                forward and backward in time
+            -->
+            <ImageButton x:Name="LeftArrowImageButton"
+                         Grid.RowSpan="2"
+                         Grid.Column="5"
+                         VerticalOptions="Center"
+                         Style="{StaticResource NavigationImageButtonStyle}"
+                         Source="leftArrow.png"
+                         Clicked="LeftArrowImageButton_Clicked" />
+
+            <ImageButton x:Name="RightArrowImageButton"
+                         Grid.RowSpan="2"
+                         Grid.Column="6"
+                         VerticalOptions="Center"
+                         Style="{StaticResource NavigationImageButtonStyle}"
+                         Source="rightArrow.png"
+                         Clicked="RightArrowImageButton_Clicked" />
             <Label x:Name="MonthLabel"
                    Grid.Row="1"
                    Grid.ColumnSpan="3"
                    Margin="15,-7,0,0"
                    Text="{Binding Month}"
-                   TextColor="White"
-                   FontSize="Medium" />
-
-            <!-- These buttons are the left and right arrows that make the calendar go
-                 forward and backward in time -->
-            <ImageButton x:Name="LeftArrowImageButton"
-                         Style="{StaticResource NavigationImageButtonStyle}"
-                         Grid.Column="5"
-                         Grid.RowSpan="2"
-                         VerticalOptions="Center"
-                         Source="leftArrow.png"
-                         Clicked="LeftArrowImageButton_Clicked" />
-
-            <ImageButton x:Name="RightArrowImageButton"
-                         Style="{StaticResource NavigationImageButtonStyle}"
-                         Grid.Column="6"
-                         Grid.RowSpan="2"
-                         VerticalOptions="Center"
-                         Source="rightArrow.png"
-                         Clicked="RightArrowImageButton_Clicked" />
+                   FontSize="Medium"
+                   TextColor="White" />
         </Grid>
 
     </ContentView.Content>
