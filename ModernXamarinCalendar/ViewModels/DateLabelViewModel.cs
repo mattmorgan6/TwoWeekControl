@@ -21,9 +21,6 @@ namespace ModernXamarinCalendar.ViewModels
         public string ShortDayName => Date.ToString("ddd").ToUpper();
 
         //* Constructors
-        public DateLabelViewModel(DateTime date)
-        {
-            Date = date;
-        }
+        public DateLabelViewModel(DateTime date) => Date = date;
     }
 }

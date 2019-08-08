@@ -28,7 +28,7 @@ namespace TwoWeekControl
         /// Any additional EventArgs passed with the firing of the event, none
         /// added on by the WeekControl instance.
         /// </param>
-        public void DateSelectedChanged(SelectedDateChangedEventArgs args)
+        public void DateSelectedChanged(object sender, SelectedDateChangedEventArgs args)
         {
             // Insert code here that you want to use the date selected for ...
             Debug.WriteLine(args.SelectedDate.ToString());

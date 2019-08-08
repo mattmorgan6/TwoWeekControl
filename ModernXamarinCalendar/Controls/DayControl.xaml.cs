@@ -21,12 +21,12 @@ namespace ModernXamarinCalendar.Controls
         {
             InitializeComponent();
 
+            SetValue(Grid.RowProperty, row);
+            SetValue(Grid.ColumnProperty, col);
+
             BindingContext = viewModel = new DayViewModel(date, selectedDate);
 
             viewModel.PropertyChanged += (sender, args) => OnPropertyChanged(args.PropertyName);
-
-            SetValue(Grid.RowProperty, row);
-            SetValue(Grid.ColumnProperty, col);
         }
     }
 }

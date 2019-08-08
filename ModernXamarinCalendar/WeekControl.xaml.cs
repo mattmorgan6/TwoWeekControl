@@ -31,8 +31,7 @@ namespace ModernXamarinCalendar
         public DateTime SelectedDate => ViewModel.SelectedDate;
 
         //* Public Events
-        public delegate void SelectedDateChangedEventHandler(SelectedDateChangedEventArgs args);
-        public event SelectedDateChangedEventHandler SelectedDateChanged;
+        public event EventHandler<SelectedDateChangedEventArgs> SelectedDateChanged;
 
         //* Constructors
         public WeekControl()
@@ -44,16 +43,10 @@ namespace ModernXamarinCalendar
 
             ViewModel.PropertyChanged += (sender, args) => OnPropertyChanged(args.PropertyName);
 
-            foreach (var control in ViewModel.DayControls)
-                MainGrid.Children.Add(control);
-
-            foreach (var control in ViewModel.DateLabelControls)
-                MainGrid.Children.Add(control);
-
             MessagingCenter.Subscribe<DayViewModel, DateTime>(this,
                 MessagingEvent.DayButtonClicked.ToString(),
                 (sender, args) => SelectedDateChanged?
-                    .Invoke(new SelectedDateChangedEventArgs(args)));
+                    .Invoke(this, new SelectedDateChangedEventArgs(args)));
         }
 
         // TODO: Put a little marker on today.
@@ -67,8 +60,8 @@ namespace ModernXamarinCalendar
             for (DateTime date = new DateTime(2018, 7, 1); date.Day < 8; date = date.AddDays(1))
             {
                 var control = new DateLabelControl(date, 2, date.Day - 1);
-                control.SetBinding(IsVisibleProperty, new Binding(
-                    nameof(ShowDayName)));
+                control.SetBinding(IsVisibleProperty, 
+                    new Binding(nameof(ShowDayName)));
 
                 MainGrid.Children.Add(control);
             }
@@ -84,7 +77,9 @@ namespace ModernXamarinCalendar
             {
                 for (int col = 0; col < 7; col++)
                 {
-                    ViewModel.DayControls.Add(new DayControl(date, DateTime.Today, row, col));
+                    var control = new DayControl(date, DateTime.Today, row, col);
+                    ViewModel.DayControls.Add(control);
+                    MainGrid.Children.Add(control);
 
                     date = date.AddDays(1);
                 }

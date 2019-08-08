@@ -78,10 +78,9 @@
                    Grid.Row="1"
                    Grid.ColumnSpan="3"
                    Margin="15,-7,0,0"
-                   Text="{Binding Month}"
+                   Text="{Binding MonthFormatted}"
                    FontSize="Medium"
                    TextColor="White" />
         </Grid>
-
     </ContentView.Content>
 </ContentView>

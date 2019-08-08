@@ -30,7 +30,7 @@ namespace ModernXamarinCalendar.ViewModels
             set
             {
                 setProperty(ref shownDate, value);
-                OnPropertyChanged(nameof(Month));
+                OnPropertyChanged(nameof(MonthFormatted));
             }
         }
         /// <summary>
@@ -49,16 +49,14 @@ namespace ModernXamarinCalendar.ViewModels
         public ICommand ShiftDatesBackwardsCommand { get; }
         public ICommand ShiftDatesForwardsCommand { get; }
 
-        public List<DateLabelControl> DateLabelControls;
         public List<DayControl> DayControls;
 
-        public string Month => ShownDate.ToString("MMMM");
+        public string MonthFormatted => ShownDate.ToString("MMMM");
 
         //* Constructors
         public WeekControlViewModel()
         {
             SelectedDate = DateTime.Today;
-            DateLabelControls = new List<DateLabelControl>();
             DayControls = new List<DayControl>();
 
             MessagingCenter.Subscribe<DayViewModel, DateTime>(this,

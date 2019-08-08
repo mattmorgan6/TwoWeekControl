@@ -13,4 +13,5 @@
            Text="{Binding ShortDayName}"
            FontSize="12"
            TextColor="White" />
+
 </ContentView>
