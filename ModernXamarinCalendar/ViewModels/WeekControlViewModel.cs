@@ -49,6 +49,7 @@ namespace ModernXamarinCalendar.ViewModels
         public ICommand ShiftDatesBackwardsCommand { get; }
         public ICommand ShiftDatesForwardsCommand { get; }
 
+        public List<DateLabelControl> DateLabelControls;
         public List<DayControl> DayControls;
 
         public string Month => ShownDate.ToString("MMMM");
@@ -57,6 +58,7 @@ namespace ModernXamarinCalendar.ViewModels
         public WeekControlViewModel()
         {
             SelectedDate = DateTime.Today;
+            DateLabelControls = new List<DateLabelControl>();
             DayControls = new List<DayControl>();
 
             MessagingCenter.Subscribe<DayViewModel, DateTime>(this,

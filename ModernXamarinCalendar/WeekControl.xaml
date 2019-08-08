@@ -13,22 +13,11 @@
 
     <ContentView.Resources>
         <ResourceDictionary>
-            <Style x:Key="DateLabelStyle"
-                   TargetType="Label">
-                <Setter Property="HorizontalOptions" Value="Center" />
-
-                <Setter Property="VerticalOptions" Value="EndAndExpand" />
-
-                <Setter Property="Margin" Value="0,5,0,5" />
-
-                <Setter Property="FontSize" Value="12" />
-
-                <Setter Property="TextColor" Value="White" />
-            </Style>
-
             <Style x:Key="NavigationImageButtonStyle"
                    TargetType="ImageButton">
                 <Setter Property="HorizontalOptions" Value="Center" />
+
+                <Setter Property="VerticalOptions" Value="Center" />
 
                 <Setter Property="WidthRequest" Value="24" />
 
@@ -74,7 +63,6 @@
             <ImageButton x:Name="LeftArrowImageButton"
                          Grid.RowSpan="2"
                          Grid.Column="5"
-                         VerticalOptions="Center"
                          Style="{StaticResource NavigationImageButtonStyle}"
                          Source="leftArrow.png"
                          Command="{Binding ShiftDatesBackwardsCommand}" />
@@ -82,7 +70,6 @@
             <ImageButton x:Name="RightArrowImageButton"
                          Grid.RowSpan="2"
                          Grid.Column="6"
-                         VerticalOptions="Center"
                          Style="{StaticResource NavigationImageButtonStyle}"
                          Source="rightArrow.png"
                          Command="{Binding ShiftDatesForwardsCommand}" />

@@ -47,6 +47,9 @@ namespace ModernXamarinCalendar
             foreach (var control in ViewModel.DayControls)
                 MainGrid.Children.Add(control);
 
+            foreach (var control in ViewModel.DateLabelControls)
+                MainGrid.Children.Add(control);
+
             MessagingCenter.Subscribe<DayViewModel, DateTime>(this,
                 MessagingEvent.DayButtonClicked.ToString(),
                 (sender, args) => SelectedDateChanged?
@@ -61,19 +64,13 @@ namespace ModernXamarinCalendar
         private void setUpDateLabels()
         {
             // Date chosen as 1 corresponds to Sunday
-            for (DateTime d = new DateTime(2018, 7, 1); d.Day < 8; d = d.AddDays(1))
+            for (DateTime date = new DateTime(2018, 7, 1); date.Day < 8; date = date.AddDays(1))
             {
-                Label tempLabel = new Label();
-                tempLabel.SetValue(Grid.RowProperty, 2);
-                tempLabel.SetValue(Grid.ColumnProperty, d.Day - 1);
-                tempLabel.Style = Resources["DateLabelStyle"] as Style;
-                tempLabel.Text = d.ToString("ddd").ToUpper();
-
-                tempLabel.BindingContext = this;
-                tempLabel.SetBinding(IsVisibleProperty, new Binding(
+                var control = new DateLabelControl(date, 2, date.Day - 1);
+                control.SetBinding(IsVisibleProperty, new Binding(
                     nameof(ShowDayName)));
 
-                MainGrid.Children.Add(tempLabel);
+                MainGrid.Children.Add(control);
             }
         }
 
