@@ -1,17 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<ContentPage x:Class="TwoWeekControl.MainPage"
+             xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:control="clr-namespace:ModernXamarinCalendar;assembly=ModernXamarinCalendar"
-             x:Class="TwoWeekControl.MainPage">
+             BackgroundColor="Black">
 
-    <StackLayout BackgroundColor="#154360">
-        <Frame Margin="0,50,0,0"
-               HorizontalOptions="Center"
-               VerticalOptions="Start"
-               OutlineColor="White">
-            <control:WeekControl x:Name="CalendarWeekControl"
-                                 ShowDayName="True" />
-        </Frame>
+    <StackLayout HorizontalOptions="Center"
+                 Margin="0,50,0,0">
+        <control:WeekControl x:Name="CalendarWeekControl"
+                             ForegroundColor="White"
+                             ShowDayName="True" />
     </StackLayout>
 
 </ContentPage>

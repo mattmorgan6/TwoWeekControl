@@ -1,9 +1,8 @@
-﻿using System;
-using System.Diagnostics;
-
-using ModernXamarinCalendar;
+﻿using System.Diagnostics;
 
 using Xamarin.Forms;
+
+using ModernXamarinCalendar.Models;
 
 namespace TwoWeekControl
 {
@@ -15,7 +14,7 @@ namespace TwoWeekControl
 
             // Subscribe to the event - This sets up the DateSelectedMethod to
             // run when a new date is clicked in the TwoWeekControl.
-            CalendarWeekControl.DataSelectedChanged += DateSelectedChanged;
+            CalendarWeekControl.SelectedDateChanged += DateSelectedChanged;
         }
 
         /// <summary>
@@ -29,13 +28,10 @@ namespace TwoWeekControl
         /// Any additional EventArgs passed with the firing of the event, none
         /// added on by the WeekControl instance.
         /// </param>
-        public void DateSelectedChanged(object sender, EventArgs e)
+        public void DateSelectedChanged(SelectedDateChangedEventArgs args)
         {
-            WeekControl control = sender as WeekControl;
-
             // Insert code here that you want to use the date selected for ...
-            // control.DateSelected gives a DateTime for the selected day.
-            Debug.WriteLine(control.DateSelected.ToString());
+            Debug.WriteLine(args.SelectedDate.ToString());
         }
     }
 }
