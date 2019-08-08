@@ -13,31 +13,19 @@ namespace ModernXamarinCalendar
     public partial class WeekControl : ContentView
     {
         //* Static Properties
-        public static readonly BindableProperty ForegroundColorProperty = BindableProperty.Create(
-            propertyName: nameof(ForegroundColor),
-            returnType: typeof(Color),
-            declaringType: typeof(WeekControl),
-            defaultValue: Color.Black,
-            defaultBindingMode: BindingMode.TwoWay,
-            propertyChanged: ForegroundColorProperty_Changed);
         public static readonly BindableProperty ShowDayNameProperty = BindableProperty.Create(
             propertyName: nameof(ShowDayName),
             returnType: typeof(bool),
             declaringType: typeof(WeekControl),
             defaultValue: false,
-            defaultBindingMode: BindingMode.TwoWay);
+            defaultBindingMode: BindingMode.TwoWay,
+            propertyChanged: ShowDayNameProperty_Changed);
 
         //* Public Properties
         public bool ShowDayName
         {
             get => ViewModel.ShowDayName;
             set => ViewModel.ShowDayName = value;
-        }
-
-        public Color ForegroundColor
-        {
-            get => ViewModel.ForegroundColor;
-            set => ViewModel.ForegroundColor = value;
         }
 
         public DateTime SelectedDate => ViewModel.SelectedDate;
@@ -52,6 +40,7 @@ namespace ModernXamarinCalendar
             InitializeComponent();
 
             setUpDayControls();
+            setUpDateLabels();
 
             ViewModel.PropertyChanged += (sender, args) => OnPropertyChanged(args.PropertyName);
 
@@ -62,8 +51,6 @@ namespace ModernXamarinCalendar
                 MessagingEvent.DayButtonClicked.ToString(),
                 (sender, args) => SelectedDateChanged?
                     .Invoke(new SelectedDateChangedEventArgs(args)));
-
-            setUpDateLabels();
         }
 
         // TODO: Put a little marker on today.
@@ -100,12 +87,7 @@ namespace ModernXamarinCalendar
             {
                 for (int col = 0; col < 7; col++)
                 {
-                    var control = new DayControl(date, DateTime.Today, row, col);
-
-                    control.SetBinding(DayControl.ForegroundColorProperty,
-                        new Binding(nameof(ForegroundColor)));
-
-                    ViewModel.DayControls.Add(control);
+                    ViewModel.DayControls.Add(new DayControl(date, DateTime.Today, row, col));
 
                     date = date.AddDays(1);
                 }
@@ -113,14 +95,6 @@ namespace ModernXamarinCalendar
         }
 
         //* Event Handlers
-        private static void ForegroundColorProperty_Changed(BindableObject bindable, object oldValue,
-            object newValue)
-        {
-            WeekControl control = (WeekControl) bindable;
-            control.OnPropertyChanged(nameof(ForegroundColor));
-            control.ForegroundColor = (Color) newValue;
-        }
-
         private static void ShowDayNameProperty_Changed(BindableObject bindable, object oldValue,
             object newValue)
         {

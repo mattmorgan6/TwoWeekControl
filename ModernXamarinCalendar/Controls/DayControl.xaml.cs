@@ -10,24 +10,10 @@ namespace ModernXamarinCalendar.Controls
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class DayControl : ContentView
     {
-        //* Static Properties
-        public static readonly BindableProperty ForegroundColorProperty = BindableProperty.Create(
-            propertyName: nameof(ForegroundColor),
-            returnType: typeof(Color),
-            declaringType: typeof(DayControl),
-            defaultValue: Color.Black,
-            defaultBindingMode: BindingMode.TwoWay);
-
         //* Private Properties
         private readonly DayViewModel viewModel;
 
         //* Public Properties
-        public Color ForegroundColor
-        {
-            get => viewModel.ForegroundColor;
-            set => viewModel.ForegroundColor = value;
-        }
-
         public DateTime Date => viewModel.Date;
 
         //* Constructors

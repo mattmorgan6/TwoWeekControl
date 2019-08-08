@@ -10,8 +10,6 @@ namespace ModernXamarinCalendar.ViewModels
     public class DayViewModel : BaseViewModel
     {
         //* Private Properties
-        private Color foregroundColor;
-
         private DateTime date;
         private DateTime selectedDate;
 
@@ -19,15 +17,6 @@ namespace ModernXamarinCalendar.ViewModels
         private double outlineOpacity;
 
         //* Public Properties
-
-        /// <summary>
-        /// The color of every item. White works best with dark theme!
-        /// </summary>
-        public Color ForegroundColor
-        {
-            get => foregroundColor;
-            set => setProperty(ref foregroundColor, value);
-        }
 
         /// <summary>The date represented by the viewmodel.</summary>
         public DateTime Date
@@ -60,14 +49,10 @@ namespace ModernXamarinCalendar.ViewModels
 
         /// <param name="date">The date represented by the viewmodel.</param>
         /// <param name="selectedDate">The selected date.</param>
-        /// <param name="foregroundColor">
-        /// The color of every item. White works best with dark theme!
-        /// </param>
         public DayViewModel(DateTime date, DateTime selectedDate)
         {
             Date = date;
             this.selectedDate = selectedDate;
-            ForegroundColor = Color.Black;
 
             updateOpacities(this.selectedDate);
 
