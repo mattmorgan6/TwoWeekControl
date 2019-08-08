@@ -60,8 +60,8 @@ namespace ModernXamarinCalendar
             for (DateTime date = new DateTime(2018, 7, 1); date.Day < 8; date = date.AddDays(1))
             {
                 var control = new DateLabelControl(date, 2, date.Day - 1);
-                control.SetBinding(IsVisibleProperty, 
-                    new Binding(nameof(ShowDayName)));
+                control.SetBinding(IsVisibleProperty,
+                    new Binding("ShowDayName", source: this));
 
                 MainGrid.Children.Add(control);
             }

@@ -6,8 +6,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d">
 
-    <Label x:Name="DateLabel"
-           HorizontalOptions="Center"
+    <Label HorizontalOptions="Center"
            VerticalOptions="EndAndExpand"
            Margin="0,5,0,5"
            Text="{Binding ShortDayName}"
