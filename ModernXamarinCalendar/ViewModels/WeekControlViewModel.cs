@@ -14,6 +14,8 @@ namespace ModernXamarinCalendar.ViewModels
         //* Private Properties
         private bool showDayName = false;
 
+        private Color foregroundColor;
+
         private DateTime shownDate;
         private DateTime selectedDate;
 
@@ -22,6 +24,12 @@ namespace ModernXamarinCalendar.ViewModels
         {
             get => showDayName;
             set => setProperty(ref showDayName, value);
+        }
+
+        public Color ForegroundColor
+        {
+            get => foregroundColor;
+            set => setProperty(ref foregroundColor, value);
         }
 
         public DateTime ShownDate

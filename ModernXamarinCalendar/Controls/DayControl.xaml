@@ -11,7 +11,7 @@
             <Label HorizontalOptions="Center"
                    VerticalOptions="Center"
                    Text="{Binding Date.Day}"
-                   TextColor="White"
+                   TextColor="{Binding ForegroundColor}"
                    Opacity="{Binding NumOpacity}" />
 
             <Button HeightRequest="30"
@@ -22,7 +22,7 @@
                     BackgroundColor="Transparent"
                     BorderWidth="1"
                     CornerRadius="15"
-                    BorderColor="White"
+                    BorderColor="{Binding ForegroundColor}"
                     Opacity="{Binding OutlineOpacity}"
                     Command="{Binding DayClickedCommand}" />
         </Grid>

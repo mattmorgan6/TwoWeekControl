@@ -8,6 +8,7 @@
     <StackLayout HorizontalOptions="Center"
                  Margin="0,50,0,0">
         <control:WeekControl x:Name="CalendarWeekControl"
+                             ForegroundColor="White"
                              ShowDayName="{Binding IsToggled, Source={x:Reference ShowDayNameSwitch}}" />
 
         <StackLayout Orientation="Horizontal"

@@ -54,7 +54,7 @@
                    Margin="15,0,0,0"
                    Text="{Binding ShownDate.Year}"
                    FontSize="Small"
-                   TextColor="White" />
+                   TextColor="{Binding ForegroundColor}" />
 
             <!--
                 These buttons are the left and right arrows that make the calendar go
@@ -80,7 +80,7 @@
                    Margin="15,-7,0,0"
                    Text="{Binding MonthFormatted}"
                    FontSize="Medium"
-                   TextColor="White" />
+                   TextColor="{Binding ForegroundColor}" />
         </Grid>
     </ContentView.Content>
 </ContentView>
