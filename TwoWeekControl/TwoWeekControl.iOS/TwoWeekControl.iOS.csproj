@@ -150,12 +150,6 @@
     <PackageReference Include="Xamarin.Forms" Version="4.1.0.618606" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\leftArrow.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\rightArrow.png" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\..\ModernXamarinCalendar\ModernXamarinCalendar.csproj">
       <Project>{c72fc9b4-7ad9-4a3b-9dd2-3813c597460b}</Project>
       <Name>ModernXamarinCalendar</Name>
