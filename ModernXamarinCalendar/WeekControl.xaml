@@ -65,14 +65,14 @@
                          Grid.RowSpan="2"
                          Grid.Column="5"
                          Style="{StaticResource NavigationImageButtonStyle}"
-                         Source="{model:ImageResource ModernXamarinCalendar.Assets.leftArrow.png}"
+                         Source="{model:ImageResource Assets/leftArrow.png}"
                          Command="{Binding ShiftDatesBackwardsCommand}" />
 
             <ImageButton x:Name="RightArrowImageButton"
                          Grid.RowSpan="2"
                          Grid.Column="6"
                          Style="{StaticResource NavigationImageButtonStyle}"
-                         Source="{model:ImageResource ModernXamarinCalendar.Assets.rightArrow.png}"
+                         Source="{model:ImageResource Assets/rightArrow.png}"
                          Command="{Binding ShiftDatesForwardsCommand}" />
 
             <Label x:Name="MonthLabel"

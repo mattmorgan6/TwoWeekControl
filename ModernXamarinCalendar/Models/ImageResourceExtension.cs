@@ -18,8 +18,11 @@ namespace ModernXamarinCalendar.Models
             if (Source == null)
                 return null;
 
-            // Do your translation lookup here, using whatever method you require
-            var imageSource = ImageSource.FromResource(Source, 
+            // Switch from folder style architecture to Embedded Resource ID
+            string source = string.Format("{0}.{1}", nameof(ModernXamarinCalendar),
+                Source.Replace("/", ".").Replace("\\", "."));
+
+            var imageSource = ImageSource.FromResource(source, 
                 typeof(ImageResourceExtension).GetTypeInfo().Assembly);
 
             return imageSource;
