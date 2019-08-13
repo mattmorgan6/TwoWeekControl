@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows.Input;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -13,6 +14,18 @@ namespace ModernXamarinCalendar
     public partial class WeekControl : ContentView
     {
         //* Static Properties
+        public static readonly BindableProperty CommandProperty = BindableProperty.Create(
+            propertyName: nameof(Command),
+            returnType: typeof(ICommand),
+            declaringType: typeof(WeekControl),
+            defaultValue: null);
+
+        public static readonly BindableProperty CommandParameterProperty = BindableProperty.Create(
+            propertyName: nameof(CommandParameter),
+            returnType: typeof(object),
+            declaringType: typeof(WeekControl),
+            defaultValue: null);
+
         public static readonly BindableProperty ForegroundColorProperty = BindableProperty.Create(
             propertyName: nameof(ForegroundColor),
             returnType: typeof(Color),
@@ -44,6 +57,18 @@ namespace ModernXamarinCalendar
 
         public DateTime SelectedDate => ViewModel.SelectedDate;
 
+        public ICommand Command
+        {
+            get => (ICommand) GetValue(CommandProperty);
+            set => SetValue(CommandProperty, value);
+        }
+
+        public object CommandParameter
+        {
+            get => GetValue(CommandParameterProperty);
+            set => SetValue(CommandParameterProperty, value);
+        }
+
         //* Public Events
         public event EventHandler<SelectedDateChangedEventArgs> SelectedDateChanged;
 
@@ -61,6 +86,12 @@ namespace ModernXamarinCalendar
                 MessagingEvent.DayButtonClicked.ToString(),
                 (sender, args) => SelectedDateChanged?
                     .Invoke(this, new SelectedDateChangedEventArgs(args)));
+
+            SelectedDateChanged += (sender, args) =>
+            {
+                if (Command?.CanExecute(CommandParameter) ?? false)
+                    Command.Execute(CommandParameter);
+            };
         }
 
         // TODO: Put a little marker on today.
