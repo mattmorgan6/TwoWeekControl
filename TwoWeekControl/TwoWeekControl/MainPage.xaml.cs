@@ -3,6 +3,7 @@
 using Xamarin.Forms;
 
 using ModernXamarinCalendar.Models;
+using System;
 
 namespace TwoWeekControl
 {
@@ -32,6 +33,11 @@ namespace TwoWeekControl
         {
             // Insert code here that you want to use the date selected for ...
             Debug.WriteLine(args.SelectedDate.ToString());
+        }
+
+        public void ChangeSelectedDate_Clicked(object sender, EventArgs args)
+        {
+            CalendarWeekControl.OverrideSelectedDate(new DateTime(2020, 3, 22));
         }
     }
 }

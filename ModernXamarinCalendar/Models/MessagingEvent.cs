@@ -3,6 +3,7 @@
     public enum MessagingEvent
     {
         DayButtonClicked,
+        SelectedDateChanged,
         ShiftDays
     }
 }

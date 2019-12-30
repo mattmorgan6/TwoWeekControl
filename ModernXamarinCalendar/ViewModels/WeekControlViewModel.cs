@@ -51,6 +51,8 @@ namespace ModernXamarinCalendar.ViewModels
             {
                 setProperty(ref selectedDate, value);
                 ShownDate = value;
+                MessagingCenter.Send(this,
+                   MessagingEvent.SelectedDateChanged.ToString(), value);
             } 
         }
 
@@ -85,6 +87,14 @@ namespace ModernXamarinCalendar.ViewModels
                 offset);
 
             ShownDate = DayControls[0].Date;
+        }
+
+        public void OverrideSelectedDate(DateTime newSelectedDate)
+        {
+            SelectedDate = newSelectedDate;
+
+            while (SelectedDate < DayControls[0].Date || SelectedDate > DayControls[0].Date)
+                ExecuteShiftDatesCommand(SelectedDate >= DayControls[0].Date);
         }
     }
 }

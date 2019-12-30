@@ -22,6 +22,11 @@
             <Switch x:Name="ShowDayNameSwitch"
                     VerticalOptions="Center" />
         </StackLayout>
+
+        <Button x:Name="ChangeSelectedDate"
+                Text="Change Selected Date"
+                TextColor="White"
+                Clicked="ChangeSelectedDate_Clicked" />
     </StackLayout>
 
 </ContentPage>
