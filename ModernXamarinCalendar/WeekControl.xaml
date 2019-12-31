@@ -3,8 +3,8 @@
              xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:ext="clr-namespace:ModernXamarinCalendar.Extensions"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:model="clr-namespace:ModernXamarinCalendar.Models"
              xmlns:vm="clr-namespace:ModernXamarinCalendar.ViewModels"
              mc:Ignorable="d">
 
@@ -65,14 +65,14 @@
                          Grid.RowSpan="2"
                          Grid.Column="5"
                          Style="{StaticResource NavigationImageButtonStyle}"
-                         Source="{model:ImageResource Assets/leftArrow.png}"
+                         Source="{ext:ImageResource leftArrow.png}"
                          Command="{Binding ShiftDatesBackwardsCommand}" />
 
             <ImageButton x:Name="RightArrowImageButton"
                          Grid.RowSpan="2"
                          Grid.Column="6"
                          Style="{StaticResource NavigationImageButtonStyle}"
-                         Source="{model:ImageResource Assets/rightArrow.png}"
+                         Source="{ext:ImageResource rightArrow.png}"
                          Command="{Binding ShiftDatesForwardsCommand}" />
 
             <Label x:Name="MonthLabel"
