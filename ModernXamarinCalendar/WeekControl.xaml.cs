@@ -83,7 +83,7 @@ namespace ModernXamarinCalendar
             ViewModel.PropertyChanged += (sender, args) => OnPropertyChanged(args.PropertyName);
 
             MessagingCenter.Subscribe<DayViewModel, DateTime>(this,
-                MessagingEvent.DayButtonClicked.ToString(),
+                MessagingEvent.DayButtonClicked,
                 (sender, args) => SelectedDateChanged?
                     .Invoke(this, new SelectedDateChangedEventArgs(args)));
 

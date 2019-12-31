@@ -63,10 +63,10 @@ namespace ModernXamarinCalendar.ViewModels
             updateOpacities(selectedDate);
 
             DayClickedCommand = new Command(() =>
-                MessagingCenter.Send(this, MessagingEvent.DayButtonClicked.ToString(), Date));
+                MessagingCenter.Send(this, MessagingEvent.DayButtonClicked, Date));
 
             MessagingCenter.Subscribe<WeekControlViewModel, int>(this,
-                MessagingEvent.ShiftDays.ToString(),
+                MessagingEvent.ShiftDays,
                 (sender, args) =>
             {
                 Date = Date.AddDays(args);
@@ -74,7 +74,7 @@ namespace ModernXamarinCalendar.ViewModels
             });
 
             MessagingCenter.Subscribe<WeekControlViewModel, DateTime>(this,
-                MessagingEvent.SelectedDateChanged.ToString(), 
+                MessagingEvent.SelectedDateChanged, 
                 (sender, args) => 
                     updateOpacities(args));
         }

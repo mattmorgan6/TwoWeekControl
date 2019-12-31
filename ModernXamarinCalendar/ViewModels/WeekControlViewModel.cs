@@ -52,7 +52,7 @@ namespace ModernXamarinCalendar.ViewModels
                 setProperty(ref selectedDate, value);
                 ShownDate = value;
                 MessagingCenter.Send(this,
-                   MessagingEvent.SelectedDateChanged.ToString(), value);
+                   MessagingEvent.SelectedDateChanged, value);
             } 
         }
 
@@ -70,7 +70,7 @@ namespace ModernXamarinCalendar.ViewModels
             DayControls = new List<DayControl>();
 
             MessagingCenter.Subscribe<DayViewModel, DateTime>(this,
-                MessagingEvent.DayButtonClicked.ToString(),
+                MessagingEvent.DayButtonClicked,
                 (sender, args) => SelectedDate = args.Date);
 
             ShiftDatesBackwardsCommand = new Command(() => ExecuteShiftDatesCommand(false));
@@ -83,7 +83,7 @@ namespace ModernXamarinCalendar.ViewModels
             int offset = shiftForward ? 14 : -14;
 
             MessagingCenter.Send(this,
-                MessagingEvent.ShiftDays.ToString(),
+                MessagingEvent.ShiftDays,
                 offset);
 
             ShownDate = DayControls[0].Date;

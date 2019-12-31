@@ -11,7 +11,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TwoWeekControl.UWP", "TwoWe
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "TwoWeekControl", "TwoWeekControl\TwoWeekControl\TwoWeekControl.shproj", "{594C99DD-FC64-4269-A7CF-B5E64FDBED2C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModernXamarinCalendar", "ModernXamarinCalendar\ModernXamarinCalendar.csproj", "{C72FC9B4-7AD9-4A3B-9DD2-3813C597460B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ModernXamarinCalendar", "ModernXamarinCalendar\ModernXamarinCalendar.csproj", "{C72FC9B4-7AD9-4A3B-9DD2-3813C597460B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Example Projects", "Example Projects", "{F872FAA0-4B9B-44C8-BD99-6AC20F2FF53D}"
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
@@ -314,6 +316,12 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{BBC5F9DF-0A73-4541-9269-3032B55CC199} = {F872FAA0-4B9B-44C8-BD99-6AC20F2FF53D}
+		{8F87F0E5-66E1-490C-9A1D-E4D6815DBA61} = {F872FAA0-4B9B-44C8-BD99-6AC20F2FF53D}
+		{A14311FB-361C-4FD2-BED8-434EE53C88EB} = {F872FAA0-4B9B-44C8-BD99-6AC20F2FF53D}
+		{594C99DD-FC64-4269-A7CF-B5E64FDBED2C} = {F872FAA0-4B9B-44C8-BD99-6AC20F2FF53D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2A9F9926-90AE-487F-A145-E1B4348A5FC2}

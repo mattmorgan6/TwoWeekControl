@@ -1,9 +1,10 @@
 ﻿namespace ModernXamarinCalendar.Models
 {
-    public enum MessagingEvent
+    internal static class MessagingEvent
     {
-        DayButtonClicked,
-        SelectedDateChanged,
-        ShiftDays
+        //* Static Properties
+        internal static string DayButtonClicked => nameof(DayButtonClicked);
+        internal static string SelectedDateChanged => nameof(SelectedDateChanged);
+        internal static string ShiftDays => nameof(ShiftDays);
     }
 }
