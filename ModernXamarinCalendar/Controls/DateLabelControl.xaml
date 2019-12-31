@@ -9,7 +9,7 @@
     <Label HorizontalOptions="Center"
            VerticalOptions="EndAndExpand"
            Margin="0,5,0,5"
-           Text="{Binding ShortDayName}"
+           Text="{Binding ShortDayName, Mode=OneTime}"
            FontSize="12"
            TextColor="{Binding ForegroundColor}" />
 

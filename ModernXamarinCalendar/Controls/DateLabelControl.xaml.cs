@@ -3,10 +3,12 @@
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-using ModernXamarinCalendar.ViewModels;
-
 namespace ModernXamarinCalendar.Controls
 {
+    /// <summary>
+    /// This class is responsible for displaying a day name in
+    /// the day names row above the TwoWeekControl.
+    /// </summary>
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class DateLabelControl : ContentView
     {
@@ -15,37 +17,30 @@ namespace ModernXamarinCalendar.Controls
             propertyName: nameof(ForegroundColor),
             returnType: typeof(Color),
             declaringType: typeof(DateLabelControl),
-            defaultValue: Color.Black,
-            defaultBindingMode: BindingMode.TwoWay,
-            propertyChanged: ForegroundColorProperty_Changed);
-
-        //* Private Properties
-        private readonly DateLabelViewModel viewModel;
+            defaultValue: Color.Black);
 
         //* Public Properties
         public Color ForegroundColor
         {
-            get => viewModel.ForegroundColor;
-            set => viewModel.ForegroundColor = value;
+            get => (Color) GetValue(ForegroundColorProperty);
+            set => SetValue(ForegroundColorProperty, value);
         }
+
+        /// <summary>
+        /// The 3 letter abbreviation of the day shown by this control.
+        /// </summary>
+        public string ShortDayName { get; private set; }
 
         //* Constructors
         public DateLabelControl(DateTime date, int row, int col)
         {
-            InitializeComponent();
+            ShortDayName = date.ToString("ddd").ToUpper();
 
-            BindingContext = viewModel = new DateLabelViewModel(date);
+            InitializeComponent();
+            BindingContext = this;
 
             SetValue(Grid.RowProperty, row);
             SetValue(Grid.ColumnProperty, col);
-        }
-
-        //* Event Handlers
-        private static void ForegroundColorProperty_Changed(BindableObject bindable, object oldValue, 
-            object newValue)
-        {
-            DateLabelControl control = (DateLabelControl) bindable;
-            control.ForegroundColor = (Color) newValue;
         }
     }
 }
