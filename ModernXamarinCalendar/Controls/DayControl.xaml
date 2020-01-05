@@ -18,7 +18,7 @@
                     WidthRequest="30"
                     HorizontalOptions="Center"
                     VerticalOptions="Center"
-                    Margin="-1,0,0,0"
+                    Margin="-1.5,0,0,0"
                     BackgroundColor="Transparent"
                     BorderWidth="1"
                     CornerRadius="15"

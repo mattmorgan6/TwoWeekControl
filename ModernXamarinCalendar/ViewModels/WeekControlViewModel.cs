@@ -93,7 +93,7 @@ namespace ModernXamarinCalendar.ViewModels
         {
             SelectedDate = newSelectedDate;
 
-            while (SelectedDate < DayControls[0].Date || SelectedDate > DayControls[0].Date)
+            while (SelectedDate < DayControls[0].Date || SelectedDate > DayControls[13].Date)
                 ExecuteShiftDatesCommand(SelectedDate >= DayControls[0].Date);
         }
     }
