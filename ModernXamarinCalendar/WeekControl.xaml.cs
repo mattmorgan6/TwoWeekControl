@@ -94,8 +94,6 @@ namespace ModernXamarinCalendar
             };
         }
 
-        // TODO: Put a little marker on today.
-
         //* Public Methods
         public void OverrideSelectedDate(DateTime newSelectedDate) =>
             ViewModel.OverrideSelectedDate(newSelectedDate);

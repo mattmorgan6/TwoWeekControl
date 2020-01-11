@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>ModernXamarinCalendar</id>
-    <version>1.0.2</version>
+    <version>1.0.4</version>
     <title>Modern Xamarin Calendar</title>
     <authors>mattmorgan6, SunnySoldier357</authors>
     <owners>mattmorgan6</owners>
@@ -12,8 +12,8 @@
     <description>
     Modern Xamarin.Forms Calendar that is both interactive and also fits well with only two weeks showing.
     </description>
-    <releaseNotes>Fixed the row width for Calendar Days</releaseNotes>
-    <copyright>Copyright 2019</copyright>
+    <releaseNotes>Re-center Date Selection</releaseNotes>
+    <copyright>Copyright 2020</copyright>
     <tags>Xamarin Forms Xamarin.Forms Calendar Date Modern Flat UI</tags>
   </metadata>
 </package>

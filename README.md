@@ -15,7 +15,7 @@ Install the Nuget Package using Nuget Package Manager or in the Package Manager
 Console run command:
 
 ``` powershell
-Install-Package ModernXamarinCalendar -Version 1.0.0
+Install-Package ModernXamarinCalendar -Version 1.0.4
 ```
 
 #### Step 2
@@ -42,15 +42,15 @@ Within your layout in the same XAML Page, place
 In the C# code for your content page (such as `MainPage.xaml.cs`)
 
 ``` csharp
-public void DateSelectedChanged(object sender, EventArgs e)
+public void SelectedDateChanged(object sender, EventArgs e)
 {
-    WeekControl calendar = sender as WeekControl;
+    var calendar = sender as WeekControl;
 
     // Insert code here that you want to use the date selected for...
 
-    // control.DateSelected returns a DateTime for the selected day.
+    // control.SelectedDate returns a DateTime for the selected day.
 
-    Debug.WriteLine(calendar.DateSelected.ToString());
+    Debug.WriteLine(calendar.SelectedDate.ToString());
 }
 ```
 
@@ -59,7 +59,7 @@ public void DateSelectedChanged(object sender, EventArgs e)
 In the same C# file, write within the constructor
 
 ``` csharp
-CalendarWeekControl.DataSelectedChanged += DateSelectedChanged;
+CalendarWeekControl.SelectedDateChanged += SelectedDateChanged;
 ```
  
 #### Step 6
@@ -88,5 +88,10 @@ CalendarWeekControl.ShowDayName = true;
 (The default value for `ShowDayName` is false, so not specifying it means the
 days will not show up).
 
-## Notes
-The font for the calendar is white, meaning that the calendar must be placed on a somewhat dark background in order to be visible.
+### Change the color of the calendar and its text
+  In the XAML page, set this property for the WeekControl:
+```       
+   ForegroundColor="White"
+```
+
+(The default value for `ForegroundColor` is Black).
